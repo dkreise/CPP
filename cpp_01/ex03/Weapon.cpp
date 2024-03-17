@@ -3,9 +3,14 @@
 
 Weapon::Weapon(void) {}
 
+Weapon::Weapon(std::string new_type)
+{
+    this->type = new_type;
+}
+
 Weapon::~Weapon(void) {}
 
-std::string& const Weapon::getType(void)
+std::string& Weapon::getType(void) // const..
 {
     return (this->type);
 }
