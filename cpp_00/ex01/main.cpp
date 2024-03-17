@@ -11,8 +11,9 @@ int main(void)
     while (1)
     {
         std::cout << "Enter your command (ADD, SEARCH or EXIT):" << std::endl;
-        std::getline(std::cin, cmd); // protect it
-        for (int i = 0; cmd[i] != '\0'; i ++)
+        if (!std::getline(std::cin, cmd)) // protect it
+        	return (1);
+		for (int i = 0; cmd[i] != '\0'; i ++)
             cmd[i] = std::toupper(cmd[i]);
         if (cmd == "EXIT")
             return (0);
