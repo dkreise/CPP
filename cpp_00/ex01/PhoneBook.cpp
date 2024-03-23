@@ -7,13 +7,9 @@ PhoneBook::PhoneBook(void)
 {
     _cur_ind= 0;
     _cnt = 0;
-    std::cout << "Constructor called pb" << std::endl;
 }
 
-PhoneBook::~PhoneBook(void)
-{
-    std::cout << "Destructor called pb" << std::endl;
-}
+PhoneBook::~PhoneBook(void) {}
 
 void PhoneBook::add(void)
 {
@@ -44,7 +40,8 @@ void PhoneBook::search(void)
     while (1)
     {   
         std::cout << "Enter the index of the contact for more information: ";
-        std::getline(std::cin, s_ind); // protect it
+        if (!std::getline(std::cin, s_ind))
+            exit(1);
         if (s_ind.length() == 0)
             return ;
         if (s_ind.length() != 1 || (s_ind[0] < '1' || s_ind[0] > '9'))

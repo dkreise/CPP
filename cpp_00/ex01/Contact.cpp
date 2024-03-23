@@ -2,15 +2,9 @@
 #include <iomanip>
 #include "Contact.hpp"
 
-Contact::Contact(void)
-{
-    //std::cout << "Constructor called contact" << std::endl;
-}
+Contact::Contact(void) {}
 
-Contact::~Contact(void)
-{
-    //std::cout << "Destructor called contact" << std::endl;
-}
+Contact::~Contact(void) {}
 
 int Contact::correct_number(std::string input)
 {
@@ -27,7 +21,7 @@ int Contact::correct_number(std::string input)
 
 std::string Contact::get_field(std::string field)
 {
-    std::string input;
+    std::string input = "";
     int correct;
 
     while (1)
@@ -35,10 +29,7 @@ std::string Contact::get_field(std::string field)
         correct = 1;
         std::cout << field << ": ";
         if (!std::getline(std::cin, input))
-        {
-            std::cout << "getline error :(" << std::endl;
-            break;
-        }
+            exit(1);
         if (input.length() == 0)
         {
             std::cout << "Empty field :( Try again!" << std::endl;
