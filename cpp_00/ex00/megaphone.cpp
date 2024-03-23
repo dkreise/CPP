@@ -8,9 +8,6 @@ int main(int argc, char *argv[])
     {
         for (int j = 0; argv[i][j] != '\0'; j ++)
             std::cout << (char) std::toupper(argv[i][j]);
-        // yes or not?..
-        // if (i != argc)
-        //     std::cout << " ";
     }
     std::cout << std::endl;
     return (0);

@@ -3,7 +3,7 @@ NAME = megaphone
 #########
 RM = rm -f
 CC = c++
-CFLAGS = -Werror -Wextra -Wall -std=c++98 -g -fsanitize=address 
+CFLAGS = -Werror -Wextra -Wall -std=c++98 #-g -fsanitize=address 
 #########
 
 #########
@@ -26,21 +26,21 @@ $(OBJ_DIR)/%.o: %.cpp
 	@${CC} $(CFLAGS) -MMD -c $< -o $@
 
 all:
-	@$(MAKE) $(NAME) --no-print-directory
+	$(MAKE) $(NAME) --no-print-directory
 
 $(NAME):: $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-	@echo "EVERYTHING DONE✌️   "⠀⠀⠀⠀⠀⠀⠀
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	@echo "EVERYTHING DONE   "⠀⠀⠀⠀⠀⠀⠀
 
 
 clean:
-	@$(RM) $(OBJ) $(DEP) --no-print-directory
-	@$(RM) -r $(OBJ_DIR) --no-print-directory
-	@echo "OBJECTS REMOVED😭   "
+	$(RM) $(OBJ) $(DEP) --no-print-directory
+	$(RM) -r $(OBJ_DIR) --no-print-directory
+	@echo "OBJECTS REMOVED  "
 
 fclean: clean
-	@$(RM) $(NAME) --no-print-directory
-	@echo "EVERYTHING REMOVED😭   "
+	$(RM) $(NAME) --no-print-directory
+	@echo "EVERYTHING REMOVED   "
 
 re:	fclean all
 
