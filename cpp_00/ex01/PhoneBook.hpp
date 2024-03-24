@@ -10,12 +10,14 @@ class PhoneBook
     public:
         PhoneBook(void);
         ~PhoneBook(void);
-        Contact contacts[8];
+        
         void add(void);
         void search(void);
     private:
         int _cur_ind;
         int _cnt;
+        Contact _contacts[8];
+        
         void _display_all(void);
 };
 

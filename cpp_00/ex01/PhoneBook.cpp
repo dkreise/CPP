@@ -15,7 +15,7 @@ void PhoneBook::add(void)
 {
     if (_cur_ind == 8)
         _cur_ind = 0;
-    contacts[_cur_ind].set_new();
+    _contacts[_cur_ind].set_new();
     _cur_ind ++;
     if (_cnt < 8)
         _cnt ++;
@@ -28,7 +28,7 @@ void PhoneBook::_display_all(void)
     std::cout << std::setw(10) << "Last Name" << "|";
     std::cout << std::setw(10) << "Nickname" << "|" << std::endl;
     for (int i = 0; i < _cnt; i ++)
-        contacts[i].display_in_table(i + 1);
+        _contacts[i].display_in_table(i + 1);
 }
 
 void PhoneBook::search(void)
@@ -51,7 +51,7 @@ void PhoneBook::search(void)
             ind = s_ind[0] - '0' - 1;
             if (ind < _cur_ind)
             {
-                contacts[ind].display();
+                _contacts[ind].display();
                 return ;
             }
             else
