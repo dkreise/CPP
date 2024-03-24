@@ -7,15 +7,30 @@ int	Account::_totalAmount = 0;
 int	Account::_totalNbDeposits = 0;
 int	Account::_totalNbWithdrawals = 0;
 
-void	Account::_displayTimestamp(void) // add zeros!!
+void	Account::_displayTimestamp(void)
 {
     std::time_t t;
     std::tm *lt;
 
     t = std::time(NULL);
     lt = std::localtime(&t);
-    std::cout << "[" << lt->tm_year + 1900 << lt->tm_mon + 1 << lt->tm_mday + 1 << "_";
-    std::cout << lt->tm_hour << lt->tm_min << lt->tm_sec << "] ";
+    std::cout << "[" << lt->tm_year + 1900; // << lt->tm_mon + 1 << lt->tm_mday + 1 << "_";
+    if (lt->tm_mon < 10)
+        std::cout << "0";
+    std::cout << lt->tm_mon + 1;
+    if (lt->tm_mday < 10)
+        std::cout << "0";
+    std::cout << lt->tm_mday <<  "_";
+    if (lt->tm_hour < 10)
+        std::cout << "0";
+    std::cout << lt->tm_hour;
+    if (lt->tm_min < 10)
+        std::cout << "0";
+    std::cout << lt->tm_min;
+    if (lt->tm_sec < 10)
+        std::cout << "0";
+    std::cout << lt->tm_sec << "] ";
+    //std::cout << lt->tm_hour << lt->tm_min << lt->tm_sec << "] ";
 }
 
 Account::Account(void)
