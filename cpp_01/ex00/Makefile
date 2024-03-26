@@ -10,8 +10,6 @@ CFLAGS = -Werror -Wextra -Wall -std=c++98 #-g -fsanitize=address
 FILES = main Zombie newZombie randomChump
 
 SRC = $(addsuffix .cpp, $(FILES))
-
-#vpath %.cpp srcs 
 #########
 
 #########
