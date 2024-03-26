@@ -2,10 +2,7 @@
 #include "HumanA.hpp"
 #include "Weapon.hpp"
 
-HumanA::HumanA(std::string name, Weapon& w) : name(name), weapon(w)  //there was an error
-{
-
-}
+HumanA::HumanA(std::string name, Weapon& w) : _name(name), _weapon(w) {}
 
 HumanA::~HumanA(void) {}
 
@@ -13,6 +10,6 @@ void HumanA::attack(void)
 {
     std::string w_type;
 
-    w_type = this->weapon.getType();
-    std::cout << this->name << " attacks with their " << w_type << std::endl;
+    w_type = this->_weapon.getType();
+    std::cout << this->_name << " attacks with their " << w_type << std::endl;
 }
