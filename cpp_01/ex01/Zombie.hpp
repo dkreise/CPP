@@ -15,7 +15,7 @@ class Zombie
         std::string get_name(void);
         
     private:
-        std::string name;
+        std::string _name;
 };
 
 #endif
