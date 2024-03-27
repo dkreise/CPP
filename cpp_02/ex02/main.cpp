@@ -16,5 +16,21 @@ int main(void)
 
     std::cout << Fixed::max(a, b) << std::endl;
 
+    std::cout << "----------------------" << std::endl;
+
+    Fixed c(7.77f);
+    Fixed d(7);
+
+    std::cout << "c: " << c << "   d: " << d << std::endl;
+    std::cout << "INT: c: " << c.toInt() << "   d: " << d.toInt() << std::endl;
+    std::cout << "min: " << Fixed::min(c, d) << std::endl;
+    if (c < d)
+        std::cout << "c < d" << std::endl;
+    if (c > d)
+        std::cout << "c > d" << std::endl;
+    if (c == d)
+        std::cout << "c == d" << std::endl;
+    std::cout << "c + d = " << c + d << std::endl;
+
     return (0);
 }
