@@ -1,10 +1,12 @@
 #include <iostream>
 #include "Harl.hpp"
 
-int main(void)
+int main(int argc, char* argv[])
 {
-	Harl h1;
+	Harl h = Harl();
 
-	h1.complain("INFO");
+	if (argc < 2)
+		return (0);
+	h.complain(argv[1]);
 	return (0);
 }
