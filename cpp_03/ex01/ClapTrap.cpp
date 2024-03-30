@@ -100,6 +100,3 @@ void ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "He does not have enough energy!" << std::endl;
 	}
 }
-
-
-
