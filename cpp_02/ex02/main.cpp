@@ -18,8 +18,8 @@ int main(void)
 
     std::cout << "----------------------" << std::endl;
 
-    Fixed c(7.77f);
-    Fixed d(7);
+    Fixed c(0.909f);
+    Fixed d(23.73f);
 
     std::cout << "c: " << c << "   d: " << d << std::endl;
     std::cout << "INT: c: " << c.toInt() << "   d: " << d.toInt() << std::endl;
