@@ -21,7 +21,9 @@ class ClapTrap
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 
-	private:
+	protected:
+		ClapTrap(unsigned int hit, unsigned int energy, unsigned int damage);
+		ClapTrap(std::string name, unsigned int hit, unsigned int energy, unsigned int damage);
 		std::string _name;
 		unsigned int _hit_p;
 		unsigned int _energy_p;
