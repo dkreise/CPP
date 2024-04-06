@@ -7,7 +7,6 @@ int main(void)
 	Fixed b(a);
 	Fixed c;
 
-	std::cout << HOLA << std::endl;
 	c = b;
 
 	std::cout << a.getRawBits() << std::endl;
