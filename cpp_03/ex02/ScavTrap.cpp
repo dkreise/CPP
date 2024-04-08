@@ -10,10 +10,10 @@ ScavTrap::ScavTrap(std::string name): ClapTrap(name, 100, 50, 20)
 	std::cout << "ScavTrap constructor called" << std::endl;
 }
 
-// ScavTrap::ScavTrap(ScavTrap const & src): _name(src.getName()), _hit_p(src.getHitP()), _energy_p(src.getEnergyP()), _damage(src.getDamage())
-// {
-// 	std::cout << "ScavTrap copy constructor called" << std::endl;
-// }
+ScavTrap::ScavTrap(ScavTrap const & src): ClapTrap(src.getName(), src.getHitP(), src.getEnergyP(), src.getDamage())
+{
+	std::cout << "ScavTrap constructor called" << std::endl;
+}
 
 ScavTrap::~ScavTrap(void)
 {

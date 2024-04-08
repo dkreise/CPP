@@ -10,10 +10,10 @@ FragTrap::FragTrap(std::string name): ClapTrap(name, 100, 100, 30)
 	std::cout << "FragTrap constructor called" << std::endl;
 }
 
-// FragTrap::FragTrap(FragTrap const & src): _name(src.getName()), _hit_p(src.getHitP()), _energy_p(src.getEnergyP()), _damage(src.getDamage())
-// {
-// 	std::cout << "FragTrap copy constructor called" << std::endl;
-// }
+FragTrap::FragTrap(FragTrap const & src): ClapTrap(src.getName(), src.getHitP(), src.getEnergyP(), src.getDamage())
+{
+	std::cout << "FragTrap constructor called" << std::endl;
+}
 
 FragTrap::~FragTrap(void)
 {
@@ -47,7 +47,7 @@ void FragTrap::attack(const std::string & target)
 	}
 }
 
-void FragTrap::highFiveGuys(void)
+void FragTrap::highFivesGuys(void)
 {
 	std::cout << "FragTrap " << this->_name << " is giving you a high five!" << std::endl;
 }
