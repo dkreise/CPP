@@ -18,8 +18,8 @@ int main(void)
 
     std::cout << "----------------------" << std::endl;
 
-    Fixed c(0.909f);
-    Fixed d(23.73f);
+    Fixed c(1.011f);
+    Fixed d(7.3333f);
 
     std::cout << "c: " << c << "   d: " << d << std::endl;
     std::cout << "INT: c: " << c.toInt() << "   d: " << d.toInt() << std::endl;
@@ -31,6 +31,9 @@ int main(void)
     if (c == d)
         std::cout << "c == d" << std::endl;
     std::cout << "c + d = " << c + d << std::endl;
+
+    std::cout << "1.5 * 4 = " << Fixed(1.5f) * Fixed(4) << std::endl;
+    std::cout << "1 / 3 = " << Fixed(1) / Fixed(3) << std::endl;
 
     return (0);
 }

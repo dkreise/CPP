@@ -103,28 +103,28 @@ Fixed Fixed::operator/(Fixed const & rhs) const
 Fixed Fixed::operator++(void)
 {
     Fixed temp;
-    temp._num = ++this->_num;
+    temp._num = ++(this->_num);
     return (temp);
 }
 
 Fixed Fixed::operator++(int)
 {
     Fixed temp(*this);
-    ++this->_num;
+    ++(this->_num);
     return(temp);
 }
 
 Fixed Fixed::operator--(void)
 {
     Fixed temp;
-    temp._num = --this->_num;
+    temp._num = --(this->_num);
     return (temp);
 }
 
 Fixed Fixed::operator--(int)
 {
     Fixed temp(*this);
-    --this->_num;
+    --(this->_num);
     return(temp);
 }
 
