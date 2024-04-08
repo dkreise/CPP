@@ -1,7 +1,7 @@
 #include "Fixed.hpp"
 #include "Point.hpp"
 
-bool bsp(Point const &a, Point const &b, Point const &c, Point const &point);
+bool bsp(Point const a, Point const b, Point const c, Point const point);
 
 void print_bsp(Point const a, Point const b, Point const c, Point const point)
 {
@@ -21,7 +21,10 @@ int main(void)
 {
 	print_bsp(Point(0, 0), Point(0, 2), Point(2, 2), Point(0, 1));
 	print_bsp(Point(0, 0), Point(0, 3), Point(3, 3), Point(1, 2));
-	print_bsp(Point(31, -87), Point(42, 1000), Point(0, 0), Point(1, 1));
+	print_bsp(Point(31, -87), Point(42.42f, 1000), Point(0, 0), Point(1, 1));
+	print_bsp(Point(-5, -5), Point(1, 5), Point(5, -5), Point(0, 0));
+	print_bsp(Point(-5, -5), Point(1, 5), Point(5, -5), Point(-3, 10));
+	print_bsp(Point(-5, -5), Point(1, 5), Point(5, -5), Point(5, -5));
 
 	std::cout << std::endl;
 	return (0);

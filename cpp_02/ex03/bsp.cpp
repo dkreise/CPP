@@ -25,7 +25,7 @@ static Fixed cross_product(Point const &a, Point const &b, Point const &point)
 	return ((b_x - a_x) * (p_y - a_y) - (b_y - a_y) * (p_x - a_x));
 }
 
-bool bsp(Point const &a, Point const &b, Point const &c, Point const &point)
+bool bsp(Point const a, Point const b, Point const c, Point const point)
 {
 	Fixed ab = cross_product(a, b, point);
 	Fixed bc = cross_product(b, c, point);

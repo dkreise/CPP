@@ -4,9 +4,7 @@ Point::Point(void): _x(Fixed(0)), _y(Fixed(0)) {}
 
 Point::Point(float const x, float const y) : _x(Fixed(x)), _y(Fixed(y)) {}
 
-Point::Point(Point const & src) : _x(src.getX()), _y(src.getY())
-{
-}
+Point::Point(Point const & src) : _x(src.getX()), _y(src.getY()) {}
 
 Point::~Point(void) {}
 
