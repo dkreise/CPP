@@ -6,11 +6,7 @@ int main(void)
 {
 	ClapTrap clap("Clappp");
 	ScavTrap scav("Scavvv");
-	FragTrap frag("Fraggg");
-
-	std::cout << "frag energy: " << frag.getEnergyP() << std::endl;
-	std::cout << "scav energy: " << scav.getEnergyP() << std::endl;
-	std::cout << "clap energy: " << clap.getEnergyP() << std::endl;
+	FragTrap frag("Fraggg");;
 
 	clap.attack("victim");
 	scav.attack("victim");
