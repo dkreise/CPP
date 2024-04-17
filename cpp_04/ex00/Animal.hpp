@@ -8,7 +8,7 @@ class Animal
     public:
         Animal(void);
         Animal(Animal const & src);
-        virtual ~Animal(void); // check leaks without
+        virtual ~Animal(void);
 
         Animal & operator=(Animal const & r);
 
