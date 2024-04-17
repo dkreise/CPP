@@ -8,12 +8,12 @@ class Animal
     public:
         Animal(void);
         Animal(Animal const & src);
-        ~Animal(void);
+        virtual ~Animal(void); // check leaks without
 
         Animal & operator=(Animal const & r);
 
-        virtual void makeSound(void);
-        std::string const getType(void);
+        virtual void makeSound(void) const;
+        std::string getType(void) const;
     protected:
         Animal(std::string type);
         std::string type;

@@ -13,7 +13,7 @@ Animal::Animal(std::string type)
 
 Animal::Animal(Animal const & src)
 {
-    // copy constructor ..
+    *this = src;
     std::cout << "Animal copy constructor called" << std::endl;
 }
 
@@ -24,16 +24,16 @@ Animal::~Animal(void)
 
 Animal & Animal::operator=(Animal const & r)
 {
-    // ...
+    this->type = r.type;
     return (*this);
 }
 
-std::string const Animal::getType(void)
+std::string Animal::getType(void) const
 {
     return (this->type);
 }
 
-void Animal::makeSound(void)
+void Animal::makeSound(void) const
 {
     std::cout << "*no sound*" << std::endl;
 }
