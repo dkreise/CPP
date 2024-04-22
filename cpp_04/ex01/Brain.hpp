@@ -1,6 +1,8 @@
 #ifndef BRAIN_HPP
 #define BRAIN_HPP
 
+#include <iostream>
+
 class Brain
 {
 	public:
@@ -10,8 +12,13 @@ class Brain
 
 		Brain & operator=(const Brain & r);
 
+		void printIdeas(void) const;
+		void addIdea(std::string idea);
+
 	private:
-		std::string ideas[100];
+		std::string _ideas[100];
+		unsigned int _ind;
+		unsigned int _last_ind;
 };
 
 #endif
