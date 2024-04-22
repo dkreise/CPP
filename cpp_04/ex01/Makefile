@@ -7,7 +7,7 @@ CFLAGS = -Werror -Wextra -Wall -std=c++98 #-g -fsanitize=address
 #########
 
 #########
-FILES = main Animal  Cat Brain
+FILES = main Animal Dog Cat Brain
 
 SRC = $(addsuffix .cpp, $(FILES))
 #########
