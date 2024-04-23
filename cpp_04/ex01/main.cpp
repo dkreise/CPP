@@ -18,6 +18,39 @@ int main(void)
     cat.printIdeas();
 
     std::cout << "--------------------------------------" << std::endl;
+    // check copies
+    Dog dog = Dog();
+    dog.addIdea("im a dog");
+    std::cout << "---ideas of dog:" << std::endl;
+    dog.printIdeas();
+    Dog dogcopy = Dog(dog);
+    std::cout << "---ideas of copy dog:" << std::endl;
+    dogcopy.printIdeas();
+    dogcopy.addIdea("im a copy");
+    std::cout << "---ideas of copy dog:" << std::endl;
+    dogcopy.printIdeas();
+    std::cout << "---ideas of dog:" << std::endl;
+    dog.printIdeas();
+
+    std::cout << "--------------------------------------" << std::endl;
+    // check copies with new
+    Dog* dogp = new Dog();
+    dogp->addIdea("im a dog");
+    std::cout << "---ideas of dog:" << std::endl;
+    dogp->printIdeas();
+    Dog* dogcopyp = new Dog(*dogp);
+    std::cout << "---ideas of copy dog:" << std::endl;
+    dogcopyp->printIdeas();
+    dogcopyp->addIdea("im a copy");
+    std::cout << "---ideas of copy dog:" << std::endl;
+    dogcopyp->printIdeas();
+    std::cout << "---ideas of dog:" << std::endl;
+    dogp->printIdeas();
+
+    delete dogp;
+    delete dogcopyp;
+
+    std::cout << "--------------------------------------" << std::endl;
     const Animal* acat = new Cat();
 
     delete acat; // shouldn't be leaks
