@@ -17,7 +17,7 @@ class ClapTrap
 		unsigned int getHitP(void) const;
 		unsigned int getEnergyP(void) const;
 		unsigned int getDamage(void) const;
-		void attack(const std::string & target);
+		virtual void attack(const std::string & target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 
