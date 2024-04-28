@@ -3,23 +3,25 @@
 DiamondTrap::DiamondTrap(void): ClapTrap(), ScavTrap(), FragTrap()
 {
 	std::cout << "DiamondTrap constructor called" << std::endl;
-	this->_hit_p = FragTrap::_hit_p;
-	this->_energy_p = ScavTrap::_energy_p;
-	this->_damage = FragTrap::_damage;
+	//std::cout << "sadasdsadasdasdsad-----------------" << this->_hit_p << std::endl;
+	this->_hit_p = FRAG_HITP;
+	this->_energy_p = SCAV_ENERGYP;
+	this->_damage = FRAG_DAMAGE;
 }
 
 DiamondTrap::DiamondTrap(std::string name): ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name)
 {
 	std::cout << "DiamondTrap constructor called" << std::endl;
 	this->_name = name;
-	this->_hit_p = FragTrap::_hit_p;
-	this->_energy_p = ScavTrap::_energy_p;
-	this->_damage = FragTrap::_damage;
+	this->_hit_p = FRAG_HITP;
+	//std::cout << "sadasdsadasdasdsad-----------------" << this->_hit_p << std::endl;
+	this->_energy_p = SCAV_ENERGYP;
+	this->_damage = FRAG_DAMAGE;
 }
 
 DiamondTrap::DiamondTrap(DiamondTrap const & src): ClapTrap(src.getName() + "_clap_name"), ScavTrap(src.getName()), FragTrap(src.getName())
 {
-	std::cout << "Diamond constructor called" << std::endl;
+	std::cout << "DiamondTrap constructor called" << std::endl;
 	*this = src;
 }
 
@@ -38,11 +40,6 @@ DiamondTrap & DiamondTrap::operator=(DiamondTrap const & rhs)
 		this->_damage = rhs.getDamage();
 	}
 	return (*this);
-}
-
-void DiamondTrap::attack(const std::string & target)
-{
-	ScavTrap::attack(target);
 }
 
 void DiamondTrap::whoAmI(void)

@@ -3,17 +3,20 @@
 
 #include "ClapTrap.hpp"
 
+#define FRAG_HITP 100
+#define FRAG_ENERGYP 100
+#define FRAG_DAMAGE 30
+
 class FragTrap : virtual public ClapTrap
 {
 	public:
 		FragTrap(void);
 		FragTrap(std::string name);
 		FragTrap(FragTrap const & src);
-		~FragTrap(void);
+		virtual ~FragTrap(void);
 
 		FragTrap & operator=(FragTrap const & rhs);
 
-		void attack(const std::string & target);
 		void highFivesGuys(void);
 };
 

@@ -1,11 +1,12 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(void): ClapTrap(100, 50, 20)
+ScavTrap::ScavTrap(void): ClapTrap(SCAV_HITP, SCAV_ENERGYP, SCAV_DAMAGE)
 {
+	this->_damage = 3;
 	std::cout << "ScavTrap constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name): ClapTrap(name, 100, 50, 20)
+ScavTrap::ScavTrap(std::string name): ClapTrap(name, SCAV_HITP, SCAV_ENERGYP, SCAV_DAMAGE)
 {
 	std::cout << "ScavTrap constructor called" << std::endl;
 }

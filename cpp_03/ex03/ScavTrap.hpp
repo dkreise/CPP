@@ -3,13 +3,17 @@
 
 #include "ClapTrap.hpp"
 
+#define SCAV_HITP 100
+#define SCAV_ENERGYP 50
+#define SCAV_DAMAGE 20
+
 class ScavTrap : virtual public ClapTrap
 {
 	public:
 		ScavTrap(void);
 		ScavTrap(std::string name);
 		ScavTrap(ScavTrap const & src);
-		~ScavTrap(void);
+		virtual ~ScavTrap(void);
 
 		ScavTrap & operator=(ScavTrap const & rhs);
 
