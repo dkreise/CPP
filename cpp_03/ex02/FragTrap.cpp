@@ -1,18 +1,18 @@
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap(void): ClapTrap(100, 100, 30)
+FragTrap::FragTrap(void): ClapTrap(FRAG_HITP, FRAG_ENERGYP, FRAG_DAMAGE)
 {
 	std::cout << "FragTrap constructor called" << std::endl;
 }
 
-FragTrap::FragTrap(std::string name): ClapTrap(name, 100, 100, 30)
+FragTrap::FragTrap(std::string name): ClapTrap(name, FRAG_HITP, FRAG_ENERGYP, FRAG_DAMAGE)
 {
 	std::cout << "FragTrap constructor called" << std::endl;
 }
 
 FragTrap::FragTrap(FragTrap const & src): ClapTrap(src.getName(), src.getHitP(), src.getEnergyP(), src.getDamage())
 {
-	std::cout << "FragTrap constructor called" << std::endl;
+	std::cout << "FragTrap copy constructor called" << std::endl;
 }
 
 FragTrap::~FragTrap(void)
@@ -22,6 +22,7 @@ FragTrap::~FragTrap(void)
 
 FragTrap & FragTrap::operator=(FragTrap const & rhs)
 {
+	std::cout << "ScavTrap copy assignment operator called" << std::endl;
 	if (this != &rhs)
 	{
 		this->_name = rhs.getName();
@@ -31,21 +32,6 @@ FragTrap & FragTrap::operator=(FragTrap const & rhs)
 	}
 	return (*this);
 }
-
-// void FragTrap::attack(const std::string & target)
-// {
-// 	if (this->_energy_p > 0)
-// 	{	
-// 		std::cout << "FragTrap " << this->_name << " attacks " << target;
-// 		std::cout << ", causing " << this->_damage << " points of damage!" << std::endl;
-// 		this->_energy_p = this->_energy_p - 1;
-// 	}
-// 	else
-// 	{
-// 		std::cout << "FragTrap " << this->_name << " is not able to attack! ";
-// 		std::cout << "He does not have enough energy!" << std::endl;
-// 	}
-// }
 
 void FragTrap::highFivesGuys(void)
 {

@@ -3,6 +3,10 @@
 
 #include "ClapTrap.hpp"
 
+#define SCAV_HITP 100
+#define SCAV_ENERGYP 50
+#define SCAV_DAMAGE 20
+
 class ScavTrap : public ClapTrap
 {
 	public:

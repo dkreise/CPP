@@ -3,6 +3,10 @@
 
 #include <iostream>
 
+#define CLAP_HITP 10
+#define CLAP_ENERGYP 10
+#define CLAP_DAMAGE 0
+
 class ClapTrap
 {
 	public:

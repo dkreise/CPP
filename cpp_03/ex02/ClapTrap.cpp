@@ -1,18 +1,18 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(void): _hit_p(10), _energy_p(10), _damage(0)
+ClapTrap::ClapTrap(void): _hit_p(CLAP_HITP), _energy_p(CLAP_ENERGYP), _damage(CLAP_DAMAGE)
 {
 	std::cout << "ClapTrap constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name): _name(name), _hit_p(10), _energy_p(10), _damage(0)
+ClapTrap::ClapTrap(std::string name): _name(name), _hit_p(CLAP_HITP), _energy_p(CLAP_ENERGYP), _damage(CLAP_DAMAGE)
 {
 	std::cout << "ClapTrap constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(ClapTrap const & src): _name(src.getName()), _hit_p(src.getHitP()), _energy_p(src.getEnergyP()), _damage(src.getDamage())
 {
-	std::cout << "ClapTrap constructor called" << std::endl;
+	std::cout << "ClapTrap copy constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(unsigned int hit, unsigned int energy, unsigned int damage): _hit_p(hit), _energy_p(energy), _damage(damage)
@@ -32,6 +32,7 @@ ClapTrap::~ClapTrap(void)
 
 ClapTrap & ClapTrap::operator=(ClapTrap const & rhs)
 {
+	std::cout << "ClapTrap copy assignment operator called" << std::endl;
 	if (this != &rhs)
 	{
 		this->_name = rhs.getName();

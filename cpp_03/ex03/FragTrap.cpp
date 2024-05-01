@@ -12,7 +12,7 @@ FragTrap::FragTrap(std::string name): ClapTrap(name, FRAG_HITP, FRAG_ENERGYP, FR
 
 FragTrap::FragTrap(FragTrap const & src): ClapTrap(src.getName(), src.getHitP(), src.getEnergyP(), src.getDamage())
 {
-	std::cout << "FragTrap constructor called" << std::endl;
+	std::cout << "FragTrap copy constructor called" << std::endl;
 }
 
 FragTrap::~FragTrap(void)
@@ -22,6 +22,7 @@ FragTrap::~FragTrap(void)
 
 FragTrap & FragTrap::operator=(FragTrap const & rhs)
 {
+	std::cout << "ScavTrap copy assignment operator called" << std::endl;
 	if (this != &rhs)
 	{
 		this->_name = rhs.getName();

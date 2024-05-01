@@ -26,18 +26,12 @@ int main(void)
 	std::cout << "scav h.p.: " << scav.getHitP() << std::endl;
 	std::cout << "clap h.p.: " << clap.getHitP() << std::endl;
 
-	clap.takeDamage(10);
-	std::cout << "clap h.p.: " << clap.getHitP() << std::endl;
-	clap.takeDamage(10);
-	std::cout << "clap h.p.: " << clap.getHitP() << std::endl;
-
 	frag.takeDamage(300);
 	std::cout << "frag h.p.: " << frag.getHitP() << std::endl;
 	frag.takeDamage(10);
 	std::cout << "frag h.p.: " << frag.getHitP() << std::endl;
 	std::cout << "frag e.p.: " << frag.getEnergyP() << std::endl;
 	
-
 	frag.highFivesGuys();
 
 	FragTrap frag2(frag);
