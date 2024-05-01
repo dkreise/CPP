@@ -1,18 +1,18 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(void): ClapTrap(100, 50, 20)
+ScavTrap::ScavTrap(void): ClapTrap(SCAV_HITP, SCAV_ENERGYP, SCAV_DAMAGE)
 {
 	std::cout << "ScavTrap constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name): ClapTrap(name, 100, 50, 20)
+ScavTrap::ScavTrap(std::string name): ClapTrap(name, SCAV_HITP, SCAV_ENERGYP, SCAV_DAMAGE)
 {
 	std::cout << "ScavTrap constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(ScavTrap const & src): ClapTrap(src.getName(), src.getHitP(), src.getEnergyP(), src.getDamage())
 {
-	std::cout << "ScavTrap constructor called" << std::endl;
+	std::cout << "ScavTrap copy constructor called" << std::endl;
 }
 
 ScavTrap::~ScavTrap(void)
@@ -22,6 +22,7 @@ ScavTrap::~ScavTrap(void)
 
 ScavTrap & ScavTrap::operator=(ScavTrap const & rhs)
 {
+	std::cout << "ScavTrap copy assignment operator called" << std::endl;
 	if (this != &rhs)
 	{
 		this->_name = rhs.getName();

@@ -41,5 +41,12 @@ int main(void)
 	std::cout << "clap h.p.: " << clap.getHitP() << std::endl;
 	std::cout << "scav h.p.: " << scav.getHitP() << std::endl;
 
+	ScavTrap scav2(scav);
+	std::cout << "scav e.p.: " << scav.getEnergyP() << std::endl;
+	std::cout << "scav2 e.p.: " << scav2.getEnergyP() << std::endl;
+	scav2.attack("victim2");
+	std::cout << "scav e.p.: " << scav.getEnergyP() << std::endl;
+	std::cout << "scav2 e.p.: " << scav2.getEnergyP() << std::endl;
+
 	return (0);
 }
