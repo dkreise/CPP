@@ -41,6 +41,8 @@ int main(void)
 	std::cout << "clap h.p.: " << clap.getHitP() << std::endl;
 	std::cout << "scav h.p.: " << scav.getHitP() << std::endl;
 
+	scav.guardGate();
+
 	ScavTrap scav2(scav);
 	std::cout << "scav e.p.: " << scav.getEnergyP() << std::endl;
 	std::cout << "scav2 e.p.: " << scav2.getEnergyP() << std::endl;
