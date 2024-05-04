@@ -20,7 +20,6 @@ DiamondTrap::DiamondTrap(std::string name): ClapTrap(name + "_clap_name"), ScavT
 DiamondTrap::DiamondTrap(DiamondTrap const & src): ClapTrap(src.getName()), ScavTrap(src.getDiamondName()), FragTrap(src.getDiamondName())
 {
 	std::cout << "DiamondTrap copy constructor called" << std::endl;
-	//*this = src; // change this
 	this->_name = src.getDiamondName();
 	this->_hit_p = src.getHitP();
 	this->_energy_p = src.getEnergyP();

@@ -19,7 +19,6 @@ int main(void)
 	std::cout << "h.p.: " << di.getHitP() << " e.p.: " << di.getEnergyP() << " d.: " << di.getDamage() << std::endl;
 
 	di.whoAmI();
-	std::cout << di.getName() << std::endl;
 
 	std::cout << "--------------------------------------" << std::endl;
 

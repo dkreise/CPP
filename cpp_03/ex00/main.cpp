@@ -2,14 +2,25 @@
 
 int main(void)
 {
+
 	ClapTrap first("First");
 	ClapTrap second("Second");
+	std::cout << "1 : h.p.: " << first.getHitP() << " e.p.: " << first.getEnergyP() << " d.: " << first.getDamage() << std::endl;
+	std::cout << "2 : h.p.: " << second.getHitP() << " e.p.: " << second.getEnergyP() << " d.: " << second.getDamage() << std::endl;
+	std::cout << "--------------------------------------" << std::endl;
 
 	for (int i = 0; i < 12; i ++)
+	{
 		first.attack("Third");
+		std::cout << "h.p.: " << first.getHitP() << " e.p.: " << first.getEnergyP() << " d.: " << first.getDamage() << std::endl;
+	}
+	std::cout << "--------------------------------------" << std::endl;
 
 	second.beRepaired(7);
+	std::cout << "2 : h.p.: " << second.getHitP() << " e.p.: " << second.getEnergyP() << " d.: " << second.getDamage() << std::endl;
 	first.beRepaired(7);
+	std::cout << "1 : h.p.: " << first.getHitP() << " e.p.: " << first.getEnergyP() << " d.: " << first.getDamage() << std::endl;
+	std::cout << "--------------------------------------" << std::endl;
 	second.attack("someone");
 	for (int i = 0; i < 5; i ++)
 		second.takeDamage(5);
