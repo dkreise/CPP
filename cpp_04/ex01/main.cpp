@@ -4,7 +4,7 @@
 #include "Brain.hpp"
 
 int main(void)
-{
+{/*
     Cat cat = Cat();
     cat.makeSound();
     cat.printIdeas();
@@ -15,7 +15,15 @@ int main(void)
     cat.printIdeas();
     for (int i = 0; i < 10; i ++)
         cat.addIdea("b");
-    cat.printIdeas();
+    cat.printIdeas();*/
+    std::cout << "--------------------------------------" << std::endl;
+    Dog* d = new Dog();
+    delete d;
+    std::cout << "--------------------------------------" << std::endl;
+    Dog* d2 = new Dog();
+    d2->addIdea("lalala");
+    Dog* d3 = new Dog();
+    *d2 = *d3;
 
     std::cout << "--------------------------------------" << std::endl;
     // check copies
@@ -49,7 +57,7 @@ int main(void)
 
     delete dogp;
     delete dogcopyp;
-
+/*
     std::cout << "--------------------------------------" << std::endl;
     const Animal* acat = new Cat();
 
@@ -82,6 +90,6 @@ int main(void)
     // Animal cat1 = Cat();
     // //Dog dog1(), dog2(), dog3();
     // Animal *animals2[] = {&cat1};
-
+*/
     return (0);
 }

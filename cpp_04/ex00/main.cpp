@@ -53,6 +53,7 @@ int main(void)
     delete (dog);
     delete (i);
     delete (copy);
+    delete (acopy);
 
     return (0);
 }

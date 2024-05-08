@@ -1,21 +1,19 @@
 #include "Cat.hpp"
-#include "Brain.hpp"
 
 Cat::Cat(void) : Animal("Cat")
 {
-    this->_brain = new Brain();
+    this->brain = new Brain();
     std::cout << "Cat constructor called" << std::endl;
 }
 
-Cat::Cat(Cat const & src) : Animal(src)
+Cat::Cat(Cat const & src)
 {
-    this->_brain = new Brain(*src._brain);
+    *this = src;
     std::cout << "Cat copy constructor called" << std::endl;
 }
 
 Cat::~Cat(void)
 {
-    delete (this->_brain);
     std::cout << "Cat destructor called" << std::endl;
 }
 
@@ -28,14 +26,4 @@ Cat & Cat::operator=(Cat const & r)
 void Cat::makeSound(void) const
 {
     std::cout << "Meow" << std::endl;
-}
-
-void Cat::printIdeas(void) const
-{
-    this->_brain->printIdeas();
-}
-
-void Cat::addIdea(std::string idea)
-{
-    this->_brain->addIdea(idea);
 }
