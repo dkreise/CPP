@@ -12,7 +12,6 @@ class AMateria
     public:
         AMateria(void);
         AMateria(std::string const & type);
-        //copy ctor
         AMateria(AMateria const & src);
         ~AMateria(void);
 
