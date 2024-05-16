@@ -8,8 +8,10 @@ class Character : public ICharacter
     public:
         Character(void);
         Character(std::string name);
-        // copy ctor
+        Character (Character const & src);
         ~Character(void);
+
+        Character & operator=(Character const & r);
 
         virtual std::string const & getName(void) const;
         virtual void equip(AMateria* m);

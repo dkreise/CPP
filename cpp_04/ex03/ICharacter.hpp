@@ -7,7 +7,6 @@
 class ICharacter
 {
     public:
-        // ctors???
         virtual ~ICharacter() {}
         virtual std::string const & getName() const = 0;
         virtual void equip(AMateria* m) = 0;

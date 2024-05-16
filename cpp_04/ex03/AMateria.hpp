@@ -8,6 +8,7 @@ class AMateria
 {
     protected:
         std::string _type;
+        unsigned int _isEquipped;
 
     public:
         AMateria(void);
@@ -17,10 +18,12 @@ class AMateria
 
         AMateria & operator=(AMateria const & r);
 
-        std::string const & getType() const;
+        std::string const & getType(void) const;
 
-        virtual AMateria* clone() const = 0;
+        virtual AMateria* clone(void) const = 0;
         virtual void use(ICharacter& target);
+        unsigned int getStatusEquipped(void) const;
+        void setStatusEquipped(unsigned int val);
 };
 
 #endif
