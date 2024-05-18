@@ -1,23 +1,17 @@
 #include "AMateria.hpp"
 
-AMateria::AMateria(void) : _isEquipped(0)
+AMateria::AMateria(void) : _isEquipped(0) {}
+
+AMateria::AMateria(std::string const & type) : _type(type), _isEquipped(0) {}
+
+AMateria::~AMateria(void) {}
+
+AMateria & AMateria::operator=(AMateria const & r)
 {
-    std::cout << "AMateria constructor called" << std::endl;
+    std::cout << "amateria = called" << std::endl;
+    (void)r;
+    return (*this);
 }
-
-AMateria::AMateria(std::string const & type) : _type(type), _isEquipped(0)
-{
-    std::cout << "AMateria constructor called" << std::endl;
-}
-
-// copy ctor
-
-AMateria::~AMateria(void)
-{
-    std::cout << "AMateria desctructor called" << std::endl;
-}
-
-// operator= overload
 
 std::string const & AMateria::getType(void) const
 {

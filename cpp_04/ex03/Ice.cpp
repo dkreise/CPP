@@ -1,20 +1,22 @@
 #include "Ice.hpp"
 
-Ice::Ice(void) : AMateria("ice")
+Ice::Ice(void) : AMateria("ice") {}
+
+Ice::Ice(Ice const & src) : AMateria("ice")
 {
-    std::cout << "Ice constructor called" << std::endl;
+    (void)src;
 }
 
-// copy ctor
+Ice::~Ice(void) {}
 
-Ice::~Ice(void)
+Ice & Ice::operator=(Ice const & r)
 {
-    std::cout << "Ice destructor called" << std::endl;
+    std::cout << "ice = called" << std::endl;
+    (void)r;
+    return (*this);
 }
 
-// operator=
-
-AMateria* Ice::clone() const
+AMateria* Ice::clone(void) const
 {
     return (new Ice());
 }

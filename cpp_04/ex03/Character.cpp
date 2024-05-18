@@ -4,14 +4,14 @@ Character::Character(void)
 {
     for (int i = 0; i < 4; i ++)
         this->_slots[i] = nullptr;
-    std::cout << "Character constructor called" << std::endl;
+    //std::cout << "Character constructor called" << std::endl;
 }
 
 Character::Character(std::string name) : _name(name)
 {
     for (int i = 0; i < 4; i ++)
         this->_slots[i] = nullptr;
-    std::cout << "Character constructor called" << std::endl;
+    //std::cout << "Character constructor called" << std::endl;
 }
 
 Character::Character(Character const & src)
@@ -27,7 +27,7 @@ Character::Character(Character const & src)
 
 Character::~Character(void)
 {
-    std::cout << "Character destructor called" << std::endl;
+    //std::cout << "Character destructor called" << std::endl;
     for (int i = 0; i < 4; i ++)
     {
         if (this->_slots[i])
@@ -59,11 +59,11 @@ void Character::equip(AMateria* m)
 {
     if (m->getStatusEquipped() != 0)
     {
-        std::cout << "This materia is already equipped by another Character!" << std::endl;
+        std::cout << "This materia is already equipped by some Character!" << std::endl;
         return;
     }
     int i = 0;
-    while (i < 4 && this->_slots[i] == nullptr)
+    while (i < 4 && this->_slots[i] != nullptr)
         i ++;
     if (i >= 4)
         return;
@@ -73,6 +73,8 @@ void Character::equip(AMateria* m)
 
 void Character::unequip(int idx)
 {
+    if (idx >= 4)
+        return ;
     if (this->_slots[idx] != nullptr)
     {
         this->_slots[idx]->setStatusEquipped(0);
@@ -82,6 +84,8 @@ void Character::unequip(int idx)
 
 void Character::use(int idx, ICharacter& target)
 {
+    if (idx >= 4)
+        return ;
     if (this->_slots[idx] != nullptr)
         this->_slots[idx]->use(target);
 }

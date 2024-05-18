@@ -4,6 +4,8 @@
 #include <iostream>
 #include "ICharacter.hpp"
 
+class ICharacter;
+
 class AMateria
 {
     protected:
@@ -13,15 +15,14 @@ class AMateria
     public:
         AMateria(void);
         AMateria(std::string const & type);
-        AMateria(AMateria const & src);
-        ~AMateria(void);
+        virtual ~AMateria(void);
 
         AMateria & operator=(AMateria const & r);
 
         std::string const & getType(void) const;
 
         virtual AMateria* clone(void) const = 0;
-        virtual void use(ICharacter& target);
+        virtual void use(ICharacter& target) = 0;
         unsigned int getStatusEquipped(void) const;
         void setStatusEquipped(unsigned int val);
 };

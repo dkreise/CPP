@@ -13,10 +13,10 @@ class Character : public ICharacter
 
         Character & operator=(Character const & r);
 
-        virtual std::string const & getName(void) const;
-        virtual void equip(AMateria* m);
-        virtual void unequip(int idx);
-        virtual void use(int idx, ICharacter& target);
+        std::string const & getName(void) const;
+        void equip(AMateria* m);
+        void unequip(int idx);
+        void use(int idx, ICharacter& target);
 
     private:
         std::string _name;

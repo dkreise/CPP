@@ -13,7 +13,7 @@ class Ice : public AMateria
 
         Ice & operator=(Ice const & r);
 
-        virtual AMateria* clone() const;
+        virtual AMateria* clone(void) const;
         virtual void use(ICharacter& target);
 };
 

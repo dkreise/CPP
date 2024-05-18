@@ -3,7 +3,7 @@
 
 #include "IMateriaSource.hpp"
 
-class MateriaSource
+class MateriaSource : public IMateriaSource
 {
     public:
         MateriaSource(void);
@@ -12,10 +12,10 @@ class MateriaSource
 
         MateriaSource & operator=(MateriaSource const & r);
 
-        virtual void learnMateria(AMateria* materia) = 0;
-        virtual AMateria* createMateria(std::string const & type) = 0;
+        virtual void learnMateria(AMateria* materia);
+        virtual AMateria* createMateria(std::string const & type);
     private:
-        AMateria *_slots[4];
+        AMateria* _slots[4];
 };
 
 #endif 
