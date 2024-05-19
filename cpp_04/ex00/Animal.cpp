@@ -24,7 +24,7 @@ Animal::~Animal(void)
 
 Animal & Animal::operator=(Animal const & r)
 {
-    this->type = r.type;
+	this->type = r.type;
     return (*this);
 }
 

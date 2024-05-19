@@ -3,14 +3,14 @@
 Character::Character(void)
 {
     for (int i = 0; i < 4; i ++)
-        this->_slots[i] = nullptr;
+        this->_slots[i] = NULL;
     //std::cout << "Character constructor called" << std::endl;
 }
 
 Character::Character(std::string name) : _name(name)
 {
     for (int i = 0; i < 4; i ++)
-        this->_slots[i] = nullptr;
+        this->_slots[i] = NULL;
     //std::cout << "Character constructor called" << std::endl;
 }
 
@@ -19,24 +19,27 @@ Character::Character(Character const & src)
     this->_name = src.getName();
     for (int i = 0; i < 4; i ++)
     {
-        if (this->_slots[i])
-            delete (this->_slots[i]);
-        this->_slots[i] = src._slots[i];
+        this->_slots[i] = NULL;
+        if (src._slots[i])
+            this->_slots[i] = src._slots[i]->clone();
     }
 }
 
 Character::~Character(void)
 {
-    //std::cout << "Character destructor called" << std::endl;
     for (int i = 0; i < 4; i ++)
     {
         if (this->_slots[i])
+        {
             delete (this->_slots[i]);
+            this->_slots[i] = NULL;
+        }
     }
 }
 
 Character & Character::operator=(Character const & r)
 {
+    std::cout << "Character '=' called" << std::endl;
     if (this != &r)
     {
         this->_name = r.getName();
@@ -44,7 +47,8 @@ Character & Character::operator=(Character const & r)
         {
             if (this->_slots[i])
                 delete (this->_slots[i]);
-            this->_slots[i] = r._slots[i];
+            this->_slots[i] = r._slots[i]->clone();
+
         }
     }
     return(*this);
@@ -63,7 +67,7 @@ void Character::equip(AMateria* m)
         return;
     }
     int i = 0;
-    while (i < 4 && this->_slots[i] != nullptr)
+    while (i < 4 && this->_slots[i] != NULL)
         i ++;
     if (i >= 4)
         return;
@@ -75,10 +79,10 @@ void Character::unequip(int idx)
 {
     if (idx >= 4)
         return ;
-    if (this->_slots[idx] != nullptr)
+    if (this->_slots[idx] != NULL)
     {
         this->_slots[idx]->setStatusEquipped(0);
-        this->_slots[idx] = nullptr;
+        this->_slots[idx] = NULL;
     }
 }
 
@@ -86,6 +90,8 @@ void Character::use(int idx, ICharacter& target)
 {
     if (idx >= 4)
         return ;
-    if (this->_slots[idx] != nullptr)
+    if (this->_slots[idx] != NULL)
         this->_slots[idx]->use(target);
+    // else
+    //     std::cout << "is nullll" << std::endl;
 }
