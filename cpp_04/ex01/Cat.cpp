@@ -21,7 +21,7 @@ Cat::~Cat(void)
 Cat & Cat::operator=(Cat const & r)
 {
     std::cout << "Cat copy assignment operator called" << std::endl;
-    if (this->brain)
+    if (this->_brain)
         delete (this->_brain);
     this->_brain = new Brain(*r._brain);
     this->type = r.type;

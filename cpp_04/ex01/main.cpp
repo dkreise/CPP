@@ -21,14 +21,9 @@ int main(void)
         cat.addIdea("b");
     std::cout << "--- ADDED 10 IDEAS: ---" << std::endl;
     cat.printIdeas();
-    std::cout << "--------------------------------------" << std::endl;
-    std::cout << "--- CHECKING IF THE EMPTY BRAIN CAN BE DELETED: ---" << std::endl;
-    // delete this section later
-    Dog* d = new Dog();
-    delete d;
+    
     std::cout << "--------------------------------------" << std::endl;
     std::cout << "--- CHECKING IF THE BRAIN IS DELETED BEFORE REASSIGNMENT AND NO LEAKS: ---" << std::endl;
-    // MAYBE ALSO DELETE LATER
     Dog* dd2 = new Dog();
     dd2->addIdea("lalala");
     Dog* dd3 = new Dog();
@@ -95,14 +90,6 @@ int main(void)
     }
 
     std::cout << "--------------------------------------" << std::endl;
-
-    // Cat cat1 = Cat();
-    // // Cat cat1();  ---- not working...
-    // Animal animals[] = {cat1};
-
-    // Animal cat1 = Cat();
-    // //Dog dog1(), dog2(), dog3();
-    // Animal *animals2[] = {&cat1};
 
     return (0);
 }
