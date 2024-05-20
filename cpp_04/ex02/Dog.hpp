@@ -9,7 +9,7 @@ class Dog : public AAnimal
     public: 
         Dog(void);
         Dog(Dog const & src);
-        ~Dog(void);
+        virtual ~Dog(void);
 
         Dog & operator=(Dog const & r);
 

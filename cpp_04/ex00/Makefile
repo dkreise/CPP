@@ -7,7 +7,7 @@ CFLAGS = -Werror -Wextra -Wall -std=c++98
 #########
 
 #########
-FILES = main Animal Dog Cat
+FILES = main Animal Dog Cat WrongAnimal WrongCat
 
 SRC = $(addsuffix .cpp, $(FILES))
 #########
