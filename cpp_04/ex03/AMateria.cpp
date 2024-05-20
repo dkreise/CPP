@@ -8,7 +8,6 @@ AMateria::~AMateria(void) {}
 
 AMateria & AMateria::operator=(AMateria const & r)
 {
-    std::cout << "amateria = called" << std::endl;
     (void)r;
     return (*this);
 }

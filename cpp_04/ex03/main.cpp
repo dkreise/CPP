@@ -224,17 +224,45 @@ int main(void)
 	}
 	{
 		std::cout << "----------------------------------------------------" << std::endl;
-	    std::cout << "--- : ---" << std::endl;
+	    std::cout << "--- CHECKING MATERIASOURCE CLASS: ---" << std::endl;
 		MateriaSource* src = new MateriaSource();
+		Character* bob = new Character("Bob");
 		Ice* i1 = new Ice();
+		Ice* i2 = new Ice();
+	    Ice* i3 = new Ice();
+	    Cure* c1 = new Cure();
+	    Cure* c2 = new Cure();
+	    Cure* c3 = new Cure();
 
 		src->learnMateria(i1);
-		src->learnMateria(new Cure());
-		src->learnMateria(new Cure());
-		src->learnMateria(new Cure());
+		src->learnMateria(i2);
+		src->learnMateria(i3);
+		src->learnMateria(c1);
+		src->learnMateria(c2);
+		src->learnMateria(c3);
 
+		AMateria* tmp;
+		tmp = src->createMateria("ice");
+		tmp->use(*bob);
+
+		AMateria* tmp1;
+		tmp1 = src->createMateria("cure");
+		tmp1->use(*bob);
+		
+		AMateria* tmp2;
+		tmp2 = src->createMateria("nonexist");
+		if (tmp2)
+			tmp2->use(*bob);
+		else
+			std::cout << "materia hasnt been created" << std::endl;
 			
 		delete src;
+		delete bob;
+		delete c2;
+		delete c3;
+		delete tmp;
+		delete tmp1;
+		delete tmp2;
 	}
 
 	return (0);

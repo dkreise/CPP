@@ -11,7 +11,6 @@ Cure::~Cure(void) {}
 
 Cure & Cure::operator=(Cure const & r)
 {
-    std::cout << "cure = called" << std::endl;
     (void)r;
     return (*this);
 }

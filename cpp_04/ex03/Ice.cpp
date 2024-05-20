@@ -11,7 +11,6 @@ Ice::~Ice(void) {}
 
 Ice & Ice::operator=(Ice const & r)
 {
-    std::cout << "ice = called" << std::endl;
     (void)r;
     return (*this);
 }

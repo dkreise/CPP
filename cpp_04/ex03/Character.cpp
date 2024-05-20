@@ -4,14 +4,12 @@ Character::Character(void)
 {
     for (int i = 0; i < 4; i ++)
         this->_slots[i] = NULL;
-    //std::cout << "Character constructor called" << std::endl;
 }
 
 Character::Character(std::string name) : _name(name)
 {
     for (int i = 0; i < 4; i ++)
         this->_slots[i] = NULL;
-    //std::cout << "Character constructor called" << std::endl;
 }
 
 Character::Character(Character const & src)
@@ -21,7 +19,10 @@ Character::Character(Character const & src)
     {
         this->_slots[i] = NULL;
         if (src._slots[i])
+        {
             this->_slots[i] = src._slots[i]->clone();
+            this->_slots[i]->setStatusEquipped(1);
+        }
     }
 }
 
@@ -39,7 +40,6 @@ Character::~Character(void)
 
 Character & Character::operator=(Character const & r)
 {
-    std::cout << "Character '=' called" << std::endl;
     if (this != &r)
     {
         this->_name = r.getName();
@@ -47,7 +47,12 @@ Character & Character::operator=(Character const & r)
         {
             if (this->_slots[i])
                 delete (this->_slots[i]);
-            this->_slots[i] = r._slots[i]->clone();
+            this->_slots[i] = NULL;
+            if (r._slots[i])
+            {
+                this->_slots[i] = r._slots[i]->clone();
+                this->_slots[i]->setStatusEquipped(1);
+            }
 
         }
     }
@@ -92,6 +97,4 @@ void Character::use(int idx, ICharacter& target)
         return ;
     if (this->_slots[idx] != NULL)
         this->_slots[idx]->use(target);
-    // else
-    //     std::cout << "is nullll" << std::endl;
 }
