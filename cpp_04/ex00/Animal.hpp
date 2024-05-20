@@ -14,6 +14,7 @@ class Animal
 
         virtual void makeSound(void) const;
         std::string getType(void) const;
+        
     protected:
         Animal(std::string type);
         std::string type;

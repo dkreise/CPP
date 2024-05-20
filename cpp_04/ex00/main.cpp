@@ -5,7 +5,7 @@
 int main(void)
 {
     std::cout << std::endl;
-    std::cout << "~~~Animal~~~" << std::endl;
+    std::cout << "~~~ ANIMAL ~~~" << std::endl;
 
     const Animal* meta = new Animal();
 
@@ -14,7 +14,7 @@ int main(void)
     std::cout << std::endl;
 
 
-    std::cout << "~~~Dog~~~" << std::endl;
+    std::cout << "~~~ DOG ~~~" << std::endl;
 
     const Animal* j = new Dog();
     Animal* nonconst = new Dog();
@@ -29,7 +29,7 @@ int main(void)
     std::cout << std::endl;
 
 
-    std::cout << "~~~Cat~~~" << std::endl;
+    std::cout << "~~~ CAT ~~~" << std::endl;
 
     const Animal* i = new Cat();
     Cat cat = Cat();
