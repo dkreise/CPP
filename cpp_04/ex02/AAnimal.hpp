@@ -14,6 +14,7 @@ class AAnimal
 
         virtual void makeSound(void) const = 0;
         std::string getType(void) const;
+        
     protected:
         AAnimal(std::string type);
         std::string type;
