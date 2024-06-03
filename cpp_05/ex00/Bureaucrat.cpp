@@ -6,50 +6,66 @@ Bureaucrat::Bureaucrat(std::string name) : _name(name), _grade(LOWEST_GRADE) {}
 
 Bureaucrat::Bureaucrat(int grade) : _name("*no name*")
 {
-    try
+    this->_grade = grade;
+    if (grade < HIGHEST_GRADE)
+        throw Bureaucrat::GradeTooHighException();
+    else if (grade > LOWEST_GRADE)
     {
-        if (grade < HIGHEST_GRADE)
-            throw Bureaucrat::GradeTooHighException();
-        else if (grade > LOWEST_GRADE)
-            throw Bureaucrat::GradeTooLowException();
-        this->_grade = grade;
+        //this->_grade = LOWEST_GRADE;
+        throw Bureaucrat::GradeTooLowException();
     }
-    catch(const Bureaucrat::GradeTooHighException& e)
-    {
-        std::cerr << e.what();
-        std::cerr << " Grade for bureaucrat " << this->_name << " was set to " << LOWEST_GRADE << " - the lowest possible." << std::endl;
-        this->_grade = LOWEST_GRADE;
-    }
-    catch(const Bureaucrat::GradeTooLowException& e)
-    {
-        std::cerr << e.what();
-        std::cerr << " Grade for bureaucrat " << this->_name << " was set to " << LOWEST_GRADE << " - the lowest possible." << std::endl;
-        this->_grade = LOWEST_GRADE;
-    }    
+    // try
+    // {
+    //     if (grade < HIGHEST_GRADE)
+    //         throw Bureaucrat::GradeTooHighException();
+    //     else if (grade > LOWEST_GRADE)
+    //         throw Bureaucrat::GradeTooLowException();
+    //     this->_grade = grade;
+    // }
+    // catch(const Bureaucrat::GradeTooHighException& e)
+    // {
+    //     std::cerr << e.what();
+    //     std::cerr << " Grade for bureaucrat " << this->_name << " was set to " << LOWEST_GRADE << " - the lowest possible." << std::endl;
+    //     this->_grade = LOWEST_GRADE;
+    // }
+    // catch(const Bureaucrat::GradeTooLowException& e)
+    // {
+    //     std::cerr << e.what();
+    //     std::cerr << " Grade for bureaucrat " << this->_name << " was set to " << LOWEST_GRADE << " - the lowest possible." << std::endl;
+    //     this->_grade = LOWEST_GRADE;
+    // }    
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
-    try
+    this->_grade = grade;
+    if (grade < HIGHEST_GRADE)
+        throw Bureaucrat::GradeTooHighException();
+    else if (grade > LOWEST_GRADE)
     {
-        if (grade < HIGHEST_GRADE)
-            throw Bureaucrat::GradeTooHighException();
-        else if (grade > LOWEST_GRADE)
-            throw Bureaucrat::GradeTooLowException();
-        this->_grade = grade;
+        //this->_grade = LOWEST_GRADE;
+        throw Bureaucrat::GradeTooLowException();
     }
-    catch(const Bureaucrat::GradeTooHighException& e)
-    {
-        std::cerr << e.what();
-        std::cerr << " Grade for bureaucrat " << this->_name << " was set to " << LOWEST_GRADE << " - the lowest possible." << std::endl;
-        this->_grade = LOWEST_GRADE;
-    }
-    catch(const Bureaucrat::GradeTooLowException& e)
-    {
-        std::cerr << e.what();
-        std::cerr << " Grade for bureaucrat " << this->_name << " was set to " << LOWEST_GRADE << " - the lowest possible." << std::endl;
-        this->_grade = LOWEST_GRADE;
-    }
+    // try
+    // {
+    //     if (grade < HIGHEST_GRADE)
+    //         throw Bureaucrat::GradeTooHighException();
+    //     else if (grade > LOWEST_GRADE)
+    //         throw Bureaucrat::GradeTooLowException();
+    //     this->_grade = grade;
+    // }
+    // catch(const Bureaucrat::GradeTooHighException& e)
+    // {
+    //     std::cerr << e.what();
+    //     std::cerr << " Grade for bureaucrat " << this->_name << " was set to " << LOWEST_GRADE << " - the lowest possible." << std::endl;
+    //     this->_grade = LOWEST_GRADE;
+    // }
+    // catch(const Bureaucrat::GradeTooLowException& e)
+    // {
+    //     std::cerr << e.what();
+    //     std::cerr << " Grade for bureaucrat " << this->_name << " was set to " << LOWEST_GRADE << " - the lowest possible." << std::endl;
+    //     this->_grade = LOWEST_GRADE;
+    // }
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat & src) : _name(src._name), _grade(src._grade) {}
@@ -74,32 +90,41 @@ int Bureaucrat::getGrade(void) const
 
 void Bureaucrat::incrementGrade(void)
 {
-    try
+    this->_grade --;
+    if (this->_grade < HIGHEST_GRADE)
     {
-        if (this->_grade == HIGHEST_GRADE)
-            throw Bureaucrat::GradeTooHighException();
-        this->_grade --;
+        //this->_grade ++;
+        throw Bureaucrat::GradeTooHighException();
     }
-    catch(const Bureaucrat::GradeTooHighException& e)
-    {
-        std::cerr << e.what();
-        std::cerr << " Incrementing for bureaucrat " << this->_name << " is impossible." << std::endl;
-    }
+    // try
+    // {
+    //     if (this->_grade == HIGHEST_GRADE)
+    //         throw Bureaucrat::GradeTooHighException();
+    //     this->_grade --;
+    // }
+    // catch(const Bureaucrat::GradeTooHighException& e)
+    // {
+    //     std::cerr << e.what();
+    //     std::cerr << " Incrementing for bureaucrat " << this->_name << " is impossible." << std::endl;
+    // }
 }
 
 void Bureaucrat::decrementGrade(void)
 {
-    try
-    {
-        if (this->_grade == LOWEST_GRADE)
-            throw Bureaucrat::GradeTooLowException();
-        this->_grade ++;
-    }
-    catch(const Bureaucrat::GradeTooLowException& e)
-    {
-        std::cerr << e.what();
-        std::cerr << " Decrementing for bureaucrat " << this->_name << " is impossible." << std::endl;
-    }
+    this->_grade ++;
+    if (this->_grade > LOWEST_GRADE)
+        throw Bureaucrat::GradeTooLowException();
+    // try
+    // {
+    //     if (this->_grade == LOWEST_GRADE)
+    //         throw Bureaucrat::GradeTooLowException();
+    //     this->_grade ++;
+    // }
+    // catch(const Bureaucrat::GradeTooLowException& e)
+    // {
+    //     std::cerr << e.what();
+    //     std::cerr << " Decrementing for bureaucrat " << this->_name << " is impossible." << std::endl;
+    // }
 }
 
 std::ostream &	operator<<(std::ostream& o, const Bureaucrat & src)
