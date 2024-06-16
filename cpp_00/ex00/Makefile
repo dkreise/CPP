@@ -36,7 +36,7 @@ $(NAME):: $(OBJ)
 clean:
 	$(RM) $(OBJ) $(DEP) --no-print-directory
 	$(RM) -r $(OBJ_DIR) --no-print-directory
-	@echo "OBJECTS REMOVED  "
+	@echo "OBJECTS REMOVED NICELY  "
 
 fclean: clean
 	$(RM) $(NAME) --no-print-directory
