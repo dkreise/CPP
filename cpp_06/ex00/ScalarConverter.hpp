@@ -14,6 +14,10 @@ class ScalarConverter
         ~ScalarConverter(void);
 
         static void convertChar(std::string& str);
+        static void convertDecimal(std::string& str);
+        static void printInt(std::string& str);
+        static void printFloat(std::string& str, int flg);
+        static void printDouble(std::string& str, int flg);
         static void printInf(char sign);
         static void printNaN(void);
 };
