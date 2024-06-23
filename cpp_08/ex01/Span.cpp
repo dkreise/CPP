@@ -4,11 +4,20 @@ Span::Span(void) {}
 
 Span::Span(unsigned int n) : _n(n) {}
 
-//copy ctor
+Span::Span(Span const & src) : _n(src._n)
+{
+    std::copy(src._nums.begin(), src._nums.end(), std::back_inserter(this->_nums));
+}
 
 Span::~Span(void) {}
 
-// =
+Span & Span::operator=(Span const & src)
+{
+    this->_n = src._n;
+    this->_nums.clear();
+    std::copy(src._nums.begin(), src._nums.end(), std::back_inserter(this->_nums));
+    return (*this);
+}
 
 void Span::addNumber(int i)
 {
@@ -27,11 +36,11 @@ void Span::addRange(int start, int end)
     if (this->_n - size < range)
         throw std::logic_error("Range is too long.");
     
-    for (int i = start; i <= end; i ++) // search for some function!!
+    for (int i = start; i <= end; i ++)
         this->_nums.push_back(i); 
 }
 
-unsigned int Span::shortestSpan(void) const
+unsigned int Span::shortestSpan(void)
 {
     unsigned int size = this->_nums.size();
     unsigned int cur = 0;
@@ -40,15 +49,15 @@ unsigned int Span::shortestSpan(void) const
     if (this->_nums.size() <= 1)
         throw std::logic_error("Not enough numbers for finding the span.");
     std::sort(this->_nums.begin(), this->_nums.end());
-    for (int i = 1; i < size; i ++)
+    for (unsigned int i = 1; i < size; i ++)
     {
-        cur = std::abs(this->_nums[i] - this->_nums[i]);
+        cur = std::abs(this->_nums[i] - this->_nums[i - 1]);
         shortest = std::min(shortest, cur);
     }
     return (shortest);
 }
 
-unsigned int Span::longestSpan(void) const
+unsigned int Span::longestSpan(void)
 {
     unsigned int size = this->_nums.size();
 

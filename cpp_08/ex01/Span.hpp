@@ -18,8 +18,8 @@ class Span
 
         void addNumber(int i);
         void addRange(int start, int end);
-        unsigned int shortestSpan(void) const;
-        unsigned int longestSpan(void) const;
+        unsigned int shortestSpan(void);
+        unsigned int longestSpan(void);
 
     private:
         Span(void);
