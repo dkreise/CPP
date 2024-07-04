@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <cmath>
 #include <vector>
 
 class PmergeMe
@@ -25,6 +26,11 @@ class PmergeMe
 
         static void printVector(std::vector<int> v);
         static void printPairs(std::vector<std::pair<int, int>> p);
+
+        static std::vector<int> getSortedVector(std::vector<std::pair<int, int>> pairs);
+        static int nextJacobsthal(int& prev, int& prevprev);
+        static int nextLength(int len, int& pow);
+        static void insertBS(std::vector<int>& sorted, int len, int val);
 };
 
 #endif

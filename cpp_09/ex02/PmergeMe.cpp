@@ -18,13 +18,9 @@ PmergeMe & PmergeMe::operator=(PmergeMe const & src)
 std::vector<int> PmergeMe::pmerge(char** nums)
 {
     // everything in try catch
-    // receive an arr
-    // pairs
-    // sort pairs
-    // sorted arr decl
-    // sortBS
 
     std::vector<int> arr;
+    std::vector<int> sorted;
     int n;
     bool is_odd;
     std::vector<std::pair<int, int>> pairs;
@@ -40,8 +36,15 @@ std::vector<int> PmergeMe::pmerge(char** nums)
     pairs = getSortedPairs(arr);
     std::cout << "Sorted Pairs: ";
     printPairs(pairs);
+    
+    sorted = getSortedVector(pairs);
+    if (is_odd)
+        insertBS(sorted, sorted.size(), arr[n - 1]);
 
-    return arr;
+    std::cout << "After: ";
+    printVector(sorted);
+
+    return sorted;
 }
 
 std::vector<int> PmergeMe::parse(char** nums)
@@ -111,6 +114,86 @@ std::vector<std::pair<int, int>> PmergeMe::mergePairs(std::vector<std::pair<int,
     }
 
     return (sorted_pairs);
+}
+
+std::vector<int> PmergeMe::getSortedVector(std::vector<std::pair<int, int>> pairs)
+{
+    std::vector<int> sorted;
+    int n = pairs.size();
+
+    for (int i = 0; i < n; i ++)
+        sorted.push_back(pairs[i].first);
+    std::cout << "Array now: ";
+    printVector(sorted);
+
+    int j_prevprev = 0;
+    int j_prev = 1;
+    int j_cur;
+    int len = 0;
+    int p = 0;
+    int i = 1;
+
+    while (i <= n)
+    {
+        j_cur = nextJacobsthal(j_prev, j_prevprev);
+        len = nextLength(len, p);
+        if (j_cur <= n)
+            insertBS(sorted, len, pairs[j_cur - 1].second);
+        while (i < j_cur)
+        {
+            if (i <= n)
+                insertBS(sorted, len, pairs[i - 1].second);
+            i ++;
+        }
+        i ++;
+    }
+
+    return (sorted);
+}
+
+int PmergeMe::nextJacobsthal(int& prev, int& prevprev)
+{
+    int cur = prev + 2 * prevprev;
+    prevprev = prev;
+    prev = cur;
+    return (cur);
+}
+
+int PmergeMe::nextLength(int len, int& p)
+{
+    int next = len + std::pow(2, p);
+    p ++;
+    return (next);
+}
+
+void PmergeMe::insertBS(std::vector<int>& sorted, int len, int val)
+{
+    if (sorted.size() == 0)
+    {
+        sorted.push_back(val);
+        return;
+    }
+
+    int l = 0;
+    int h = len - 1;
+    int mid;
+    int cur;
+    while (l <= h)
+    {
+        mid = (l + h) / 2;
+        cur = sorted[mid];
+        if (l == h)
+        {
+            if (cur < val)
+                l ++;
+            break;
+        }
+        else if (cur < val)
+            l = mid + 1;
+        else    
+            h = mid - 1;
+    }
+    sorted.insert(sorted.begin() + l, val);
 }
 
 void PmergeMe::printVector(std::vector<int> v)
