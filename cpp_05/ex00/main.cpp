@@ -2,7 +2,7 @@
 
 Bureaucrat test_namegrade_ctor(std::string name, int grade)
 {
-    Bureaucrat b(name, LOWEST_GRADE); // why is not working without this ??
+    Bureaucrat b(name, LOWEST_GRADE);
     try
     {
         Bureaucrat b(name, grade);
@@ -21,7 +21,7 @@ Bureaucrat test_namegrade_ctor(std::string name, int grade)
 
 Bureaucrat test_grade_ctor(int grade)
 {
-    Bureaucrat b(LOWEST_GRADE); // why is not working without this ??
+    Bureaucrat b(LOWEST_GRADE);
     try
     {
         Bureaucrat b(grade);
@@ -89,7 +89,6 @@ int main(void)
     std::cout << b4 << std::endl;
     
     std::cout << std::endl << "------- DECREMENT MEMBER FUNCTION -------" << std::endl;
-    //b1.decrementGrade();
     test_decrement(b1);
     test_decrement(b2);
 
@@ -97,6 +96,11 @@ int main(void)
     test_increment(b3);
     Bureaucrat b5 = test_namegrade_ctor("fifth", 1);
     test_increment(b5);
+    std::cout << b5 << std::endl;
+
+    std::cout << std::endl << "------- GET MEMBER FUNCTIONS -------" << std::endl;
+    std::cout << "getName() for b5: " << b5.getName() << std::endl;
+    std::cout << "getGrade() for b3: " << b3.getGrade() << std::endl;
 
     return (0);
 }

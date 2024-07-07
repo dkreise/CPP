@@ -10,30 +10,7 @@ Bureaucrat::Bureaucrat(int grade) : _name("*no name*")
     if (grade < HIGHEST_GRADE)
         throw Bureaucrat::GradeTooHighException();
     else if (grade > LOWEST_GRADE)
-    {
-        //this->_grade = LOWEST_GRADE;
         throw Bureaucrat::GradeTooLowException();
-    }
-    // try
-    // {
-    //     if (grade < HIGHEST_GRADE)
-    //         throw Bureaucrat::GradeTooHighException();
-    //     else if (grade > LOWEST_GRADE)
-    //         throw Bureaucrat::GradeTooLowException();
-    //     this->_grade = grade;
-    // }
-    // catch(const Bureaucrat::GradeTooHighException& e)
-    // {
-    //     std::cerr << e.what();
-    //     std::cerr << " Grade for bureaucrat " << this->_name << " was set to " << LOWEST_GRADE << " - the lowest possible." << std::endl;
-    //     this->_grade = LOWEST_GRADE;
-    // }
-    // catch(const Bureaucrat::GradeTooLowException& e)
-    // {
-    //     std::cerr << e.what();
-    //     std::cerr << " Grade for bureaucrat " << this->_name << " was set to " << LOWEST_GRADE << " - the lowest possible." << std::endl;
-    //     this->_grade = LOWEST_GRADE;
-    // }    
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
@@ -42,30 +19,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
     if (grade < HIGHEST_GRADE)
         throw Bureaucrat::GradeTooHighException();
     else if (grade > LOWEST_GRADE)
-    {
-        //this->_grade = LOWEST_GRADE;
         throw Bureaucrat::GradeTooLowException();
-    }
-    // try
-    // {
-    //     if (grade < HIGHEST_GRADE)
-    //         throw Bureaucrat::GradeTooHighException();
-    //     else if (grade > LOWEST_GRADE)
-    //         throw Bureaucrat::GradeTooLowException();
-    //     this->_grade = grade;
-    // }
-    // catch(const Bureaucrat::GradeTooHighException& e)
-    // {
-    //     std::cerr << e.what();
-    //     std::cerr << " Grade for bureaucrat " << this->_name << " was set to " << LOWEST_GRADE << " - the lowest possible." << std::endl;
-    //     this->_grade = LOWEST_GRADE;
-    // }
-    // catch(const Bureaucrat::GradeTooLowException& e)
-    // {
-    //     std::cerr << e.what();
-    //     std::cerr << " Grade for bureaucrat " << this->_name << " was set to " << LOWEST_GRADE << " - the lowest possible." << std::endl;
-    //     this->_grade = LOWEST_GRADE;
-    // }
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat & src) : _name(src._name), _grade(src._grade) {}
@@ -90,41 +44,26 @@ int Bureaucrat::getGrade(void) const
 
 void Bureaucrat::incrementGrade(void)
 {
-    this->_grade --;
-    if (this->_grade < HIGHEST_GRADE)
-    {
-        //this->_grade ++;
+    if (this->_grade - 1 < HIGHEST_GRADE)
         throw Bureaucrat::GradeTooHighException();
-    }
-    // try
-    // {
-    //     if (this->_grade == HIGHEST_GRADE)
-    //         throw Bureaucrat::GradeTooHighException();
-    //     this->_grade --;
-    // }
-    // catch(const Bureaucrat::GradeTooHighException& e)
-    // {
-    //     std::cerr << e.what();
-    //     std::cerr << " Incrementing for bureaucrat " << this->_name << " is impossible." << std::endl;
-    // }
+    this->_grade --;
 }
 
 void Bureaucrat::decrementGrade(void)
 {
-    this->_grade ++;
-    if (this->_grade > LOWEST_GRADE)
+    if (this->_grade + 1 > LOWEST_GRADE)
         throw Bureaucrat::GradeTooLowException();
-    // try
-    // {
-    //     if (this->_grade == LOWEST_GRADE)
-    //         throw Bureaucrat::GradeTooLowException();
-    //     this->_grade ++;
-    // }
-    // catch(const Bureaucrat::GradeTooLowException& e)
-    // {
-    //     std::cerr << e.what();
-    //     std::cerr << " Decrementing for bureaucrat " << this->_name << " is impossible." << std::endl;
-    // }
+    this->_grade ++;
+}
+
+const char* Bureaucrat::GradeTooHighException::what() const throw()
+{
+    return ("Error: Grade is too high.");
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw()
+{
+    return ("Error: Grade is too low.");
 }
 
 std::ostream &	operator<<(std::ostream& o, const Bureaucrat & src)
