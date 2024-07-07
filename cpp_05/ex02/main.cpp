@@ -29,6 +29,7 @@ void test_beSigned(AForm & f, const Bureaucrat& b)
     try
     {
         f.beSigned(b);
+        std::cout << "Form has signed successfully." << std::endl;
     }
     catch(const AForm::GradeTooLowException& e)
     {
@@ -38,9 +39,11 @@ void test_beSigned(AForm & f, const Bureaucrat& b)
 
 void test_execute(AForm & f, Bureaucrat const & b)
 {
+    std::cout << "For form " << f.getName() << ":" << std::endl;
     try
     {
         f.execute(b);
+        std::cout << "Form has executed successfully." << std::endl;
     }
     catch(const AForm::FormNotSignedException& e)
     {
@@ -82,7 +85,7 @@ int main(void)
     b1.signForm(f3);
     std::cout << f1 << std::endl << f2 << std::endl << f3 << std::endl;
 
-    std::cout << std::endl << "------- executing -------" << std::endl;
+    std::cout << std::endl << "------- EXECUTE FORMS -------" << std::endl;
     b2.executeForm(f1);
     b3.executeForm(f2);
     test_execute(f3, b1);

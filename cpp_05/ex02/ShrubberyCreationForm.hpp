@@ -9,7 +9,7 @@ class ShrubberyCreationForm : public AForm
         ShrubberyCreationForm(void);
         ShrubberyCreationForm(std::string target);
         ShrubberyCreationForm(const ShrubberyCreationForm & src);
-        ~ShrubberyCreationForm(void);
+        virtual ~ShrubberyCreationForm(void);
 
         std::string getTarget(void) const;
     

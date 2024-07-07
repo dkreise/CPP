@@ -17,8 +17,8 @@ std::string ShrubberyCreationForm::getTarget(void) const
 void ShrubberyCreationForm::executeForm(void) const
 {
     std::ofstream treeFile;
-    //treeFile.open(this->_target + "_shrubbery");
-    treeFile.open("target_shrubbery");
+    treeFile.open(this->_target + "_shrubbery");
+    //treeFile.open("target_shrubbery");
     if (treeFile.is_open() == false)
     {
         std::cerr << "Error: file was unable to open." << std::endl;
