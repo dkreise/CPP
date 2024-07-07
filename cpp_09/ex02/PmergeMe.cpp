@@ -21,30 +21,45 @@ std::vector<int> PmergeMe::pmerge(char** nums)
 
     std::vector<int> arr;
     std::vector<int> sorted;
+    
+    arr = parse(nums);
+    std::cout << "Before: ";
+    printVector(arr);
+    
+    clock_t startv = clock();
+    sorted = mergeInsertSortVector(arr);
+    clock_t endv = clock();
+
+    std::cout << "After: ";
+    printVector(sorted);
+
+    double elapsed = static_cast<double>(endv - startv) / CLOCKS_PER_SEC * 1000000.0;
+    std::cout << "Time to process a range of " << arr.size() << " elements with std::vector : " << elapsed << " us" << std::endl;
+
+    return (sorted);
+}
+
+std::vector<int> PmergeMe::mergeInsertSortVector(std::vector<int> arr)
+{
+    std::vector<int> sorted;
     int n;
     bool is_odd;
     std::vector<std::pair<int, int>> pairs;
 
-    arr = parse(nums);
-    std::cout << "Before: ";
-    printVector(arr);
     n = arr.size();
     if (n % 2 == 1)    
         is_odd = true;
     else 
         is_odd = false;
-    pairs = getSortedPairs(arr);
+    pairs = getSortedPairsV(arr);
     std::cout << "Sorted Pairs: ";
-    printPairs(pairs);
+    printPairsV(pairs);
     
     sorted = getSortedVector(pairs);
     if (is_odd)
-        insertBS(sorted, sorted.size(), arr[n - 1]);
+        insertBSVector(sorted, sorted.size(), arr[n - 1]);
 
-    std::cout << "After: ";
-    printVector(sorted);
-
-    return sorted;
+    return (sorted);
 }
 
 std::vector<int> PmergeMe::parse(char** nums)
@@ -58,7 +73,7 @@ std::vector<int> PmergeMe::parse(char** nums)
     return (arr);
 }
 
-std::vector<std::pair<int, int>> PmergeMe::getSortedPairs(std::vector<int>& arr)
+std::vector<std::pair<int, int>> PmergeMe::getSortedPairsV(std::vector<int>& arr)
 {
     int n = arr.size();
     std::vector<std::pair<int, int>> pairs;
@@ -73,11 +88,11 @@ std::vector<std::pair<int, int>> PmergeMe::getSortedPairs(std::vector<int>& arr)
             pairs.push_back(std::make_pair(arr[i + 1], arr[i]));
     }
     std::cout << "Not Sorted Pairs: ";
-    printPairs(pairs);
-    return (sortPairs(pairs));
+    printPairsV(pairs);
+    return (sortPairsV(pairs));
 }
 
-std::vector<std::pair<int, int>> PmergeMe::sortPairs(std::vector<std::pair<int, int>> pairs)
+std::vector<std::pair<int, int>> PmergeMe::sortPairsV(std::vector<std::pair<int, int>> pairs)
 {
     int n = pairs.size();
     if (n <= 1)
@@ -88,10 +103,10 @@ std::vector<std::pair<int, int>> PmergeMe::sortPairs(std::vector<std::pair<int, 
     std::copy(pairs.begin(), pairs.begin() + n / 2, std::back_inserter(left));
     std::copy(pairs.begin() + n / 2, pairs.end(), std::back_inserter(right));
 
-    return (mergePairs(sortPairs(left), sortPairs(right)));
+    return (mergePairsV(sortPairsV(left), sortPairsV(right)));
 }
 
-std::vector<std::pair<int, int>> PmergeMe::mergePairs(std::vector<std::pair<int, int>> left, std::vector<std::pair<int, int>> right)
+std::vector<std::pair<int, int>> PmergeMe::mergePairsV(std::vector<std::pair<int, int>> left, std::vector<std::pair<int, int>> right)
 {
     std::vector<std::pair<int, int>> sorted_pairs;
     int n1 = left.size();
@@ -138,11 +153,11 @@ std::vector<int> PmergeMe::getSortedVector(std::vector<std::pair<int, int>> pair
         j_cur = nextJacobsthal(j_prev, j_prevprev);
         len = nextLength(len, p);
         if (j_cur <= n)
-            insertBS(sorted, len, pairs[j_cur - 1].second);
+            insertBSVector(sorted, len, pairs[j_cur - 1].second);
         while (i < j_cur)
         {
             if (i <= n)
-                insertBS(sorted, len, pairs[i - 1].second);
+                insertBSVector(sorted, len, pairs[i - 1].second);
             i ++;
         }
         i ++;
@@ -166,7 +181,7 @@ int PmergeMe::nextLength(int len, int& p)
     return (next);
 }
 
-void PmergeMe::insertBS(std::vector<int>& sorted, int len, int val)
+void PmergeMe::insertBSVector(std::vector<int>& sorted, int len, int val)
 {
     if (sorted.size() == 0)
     {
@@ -210,7 +225,7 @@ void PmergeMe::printVector(std::vector<int> v)
     std::cout << " ]" << std::endl;
 }
 
-void PmergeMe::printPairs(std::vector<std::pair<int, int>> p)
+void PmergeMe::printPairsV(std::vector<std::pair<int, int>> p)
 {
     int n = p.size();
 
