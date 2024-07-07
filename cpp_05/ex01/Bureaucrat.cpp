@@ -10,10 +10,7 @@ Bureaucrat::Bureaucrat(int grade) : _name("*no name*")
     if (grade < HIGHEST_GRADE)
         throw Bureaucrat::GradeTooHighException();
     else if (grade > LOWEST_GRADE)
-    {
-        //this->_grade = LOWEST_GRADE;
         throw Bureaucrat::GradeTooLowException();
-    }  
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
@@ -22,10 +19,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
     if (grade < HIGHEST_GRADE)
         throw Bureaucrat::GradeTooHighException();
     else if (grade > LOWEST_GRADE)
-    {
-        //this->_grade = LOWEST_GRADE;
         throw Bureaucrat::GradeTooLowException();
-    }
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat & src) : _name(src._name), _grade(src._grade) {}
@@ -50,19 +44,16 @@ int Bureaucrat::getGrade(void) const
 
 void Bureaucrat::incrementGrade(void)
 {
-    this->_grade --;
-    if (this->_grade < HIGHEST_GRADE)
-    {
-        //this->_grade ++;
+    if (this->_grade - 1 < HIGHEST_GRADE)
         throw Bureaucrat::GradeTooHighException();
-    }
+    this->_grade --;
 }
 
 void Bureaucrat::decrementGrade(void)
 {
-    this->_grade ++;
-    if (this->_grade > LOWEST_GRADE)
+    if (this->_grade + 1 > LOWEST_GRADE)
         throw Bureaucrat::GradeTooLowException();
+    this->_grade ++;
 }
 
 void Bureaucrat::signForm(Form& f) const

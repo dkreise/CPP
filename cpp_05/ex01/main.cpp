@@ -3,7 +3,7 @@
 
 Bureaucrat test_bureaucrat_ctor(std::string name, int grade)
 {
-    Bureaucrat b(name, LOWEST_GRADE); // why is not working without this ??
+    Bureaucrat b(name, LOWEST_GRADE);
     try
     {
         Bureaucrat b(name, grade);
@@ -99,10 +99,8 @@ int main(void)
     std::cout << f3 << std::endl;
 
     std::cout << std::endl << "------- BE_SIGNED TEST -------" << std::endl;
-    //f1.beSigned(b1);
     test_beSigned(f1, b1);
     std::cout << f1 << std::endl;
-    //f2.beSigned(b2);
     test_beSigned(f2, b2);
     std::cout << f2 << std::endl;
 
