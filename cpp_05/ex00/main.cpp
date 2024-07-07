@@ -84,6 +84,10 @@ int main(void)
     Bureaucrat b3 = test_namegrade_ctor("third", 7);
     std::cout << b3 << std::endl;
 
+    std::cout << std::endl << "------- COPY CONSTRUCTOR -------" << std::endl;
+    Bureaucrat copy = Bureaucrat(b3);
+    std::cout << copy << std::endl;
+
     std::cout << std::endl << "------- EXCEPTION CATCH IN CONSTRUCTOR -------" << std::endl;
     Bureaucrat b4 = test_namegrade_ctor("fourth", 333);
     std::cout << b4 << std::endl;
