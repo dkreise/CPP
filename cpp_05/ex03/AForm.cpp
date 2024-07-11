@@ -4,21 +4,10 @@ AForm::AForm(void) : _name("*no name*"), _is_signed(false), _grade_to_sign(LOWES
 
 AForm::AForm(std::string name, int grade_to_sign, int grade_to_execute) : _name(name), _is_signed(false), _grade_to_sign(grade_to_sign), _grade_to_execute(grade_to_execute)
 {
-    try
-    {
-        if (grade_to_sign < HIGHEST_GRADE || grade_to_execute < HIGHEST_GRADE)
-            throw AForm::GradeTooHighException();
-        else if (grade_to_sign > LOWEST_GRADE || grade_to_execute > LOWEST_GRADE)
-            throw AForm::GradeTooLowException();
-    }
-    catch(const AForm::GradeTooHighException& e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
-    catch(const AForm::GradeTooLowException& e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
+    if (grade_to_sign < HIGHEST_GRADE || grade_to_execute < HIGHEST_GRADE)
+        throw AForm::GradeTooHighException();
+    else if (grade_to_sign > LOWEST_GRADE || grade_to_execute > LOWEST_GRADE)
+        throw AForm::GradeTooLowException();
 }
 
 AForm::AForm(AForm const & src) : _name(src._name), _is_signed(false), _grade_to_sign(src._grade_to_sign), _grade_to_execute(src._grade_to_execute) {}
@@ -53,18 +42,10 @@ int AForm::getGradeToExecute(void) const
 
 void AForm::beSigned(const Bureaucrat& b)
 {
-    try
-    {
-        if (b.getGrade() <= this->_grade_to_sign)
-            this->_is_signed = true;
-        else
-            throw AForm::GradeTooLowException();
-    }
-    catch(const AForm::GradeTooLowException& e)
-    {
-        std::cerr << e.what();
-        std::cerr << " Form " << this->_name << " cannot be signed by bureaucrat " << b.getName() << "." << std::endl;
-    }
+    if (b.getGrade() <= this->_grade_to_sign)
+        this->_is_signed = true;
+    else
+        throw AForm::GradeTooLowException();
 }
 
 void AForm::execute(Bureaucrat const & executor) const

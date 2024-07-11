@@ -70,6 +70,10 @@ int main(void)
     if (f3)
         std::cout << *f3 << std::endl;
 
+    Bureaucrat b1 = test_bureaucrat_ctor("First", 3);
+    b1.signForm(*f1);
+    b1.executeForm(*f1);
+
     delete f1;
     delete f2;
     delete f3;
