@@ -13,7 +13,9 @@ class ScalarConverter
         
     private:
         ScalarConverter(void);
+        ScalarConverter(ScalarConverter const & src);
         ~ScalarConverter(void);
+        ScalarConverter & operator=(ScalarConverter const & src);
 
         static void convertChar(std::string& str);
         static void convertDecimal(std::string& str);

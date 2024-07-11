@@ -1,5 +1,20 @@
 #include "ScalarConverter.hpp"
 
+ScalarConverter::ScalarConverter(void) {}
+
+ScalarConverter::ScalarConverter(ScalarConverter const & src)
+{
+    (void) src;
+}
+
+ScalarConverter::~ScalarConverter(void) {}
+
+ScalarConverter & ScalarConverter::operator=(ScalarConverter const & src)
+{
+    (void) src;
+    return (*this);
+}
+
 void ScalarConverter::convert(std::string str)
 {
     try
@@ -88,7 +103,7 @@ void ScalarConverter::convertDecimal(std::string& str)
 
 void ScalarConverter::printInt(std::string& str)
 {
-    int i = std::stoi(str);
+    int i = std::atoi(str.c_str());
     char i_c = static_cast<char>(i);
     float i_f = static_cast<float>(i);
     double i_d = static_cast<double>(i);
@@ -104,7 +119,7 @@ void ScalarConverter::printInt(std::string& str)
 
 void ScalarConverter::printFloat(std::string& str, int flg)
 {
-    float f = std::stof(str);
+    float f = std::atof(str.c_str());
     int f_i = static_cast<int>(f);
     char f_c = static_cast<char>(f_i);
     double f_d = static_cast<double>(f);
@@ -131,7 +146,7 @@ void ScalarConverter::printFloat(std::string& str, int flg)
 
 void ScalarConverter::printDouble(std::string& str, int flg)
 {
-    double d = std::stod(str);
+    double d = std::atof(str.c_str());
     int d_i = static_cast<int>(d);
     char d_c = static_cast<char>(d_i);
     float d_f = static_cast<float>(d);
