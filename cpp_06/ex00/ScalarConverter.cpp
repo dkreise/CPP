@@ -1,4 +1,5 @@
 #include "ScalarConverter.hpp"
+#include <limits>
 
 ScalarConverter::ScalarConverter(void) {}
 
@@ -21,7 +22,7 @@ void ScalarConverter::convert(std::string str)
     {
         if (str.empty())
             throw std::logic_error("Invalid argument.");
-        while (str[0] == ' ') // maybe add \t etc
+        while (str[0] == ' ')
             str.erase(0, 1);
         while (str[str.length() - 1] == ' ')
             str.erase(str.length() - 1, 1);
@@ -103,16 +104,23 @@ void ScalarConverter::convertDecimal(std::string& str)
 
 void ScalarConverter::printInt(std::string& str)
 {
-    int i = std::atoi(str.c_str());
+    // int i = std::atoi(str.c_str());
+    double i = std::atof(str.c_str());
+    // double aux = std::atof(str.c_str());
     char i_c = static_cast<char>(i);
     float i_f = static_cast<float>(i);
     double i_d = static_cast<double>(i);
 
+    // if (i < aux)
+    // {
+    //     std::cout << "Out of range." << std::endl;
+    //     return;
+    // }
     if (i < 32 || i > 126)
         std::cout << "char: non displayable" << std::endl;
     else
         std::cout << "char: \'" << i_c << "\'" << std::endl;
-    std::cout << "int: " << i << std::endl;
+    std::cout << "int: " << (int)i << std::endl;
     std::cout << "float: " << i_f << ".0f" << std::endl;
     std::cout << "double: " << i_d << ".0" << std::endl;
 }
@@ -132,7 +140,7 @@ void ScalarConverter::printFloat(std::string& str, int flg)
         std::cout << "int: impossible" << std::endl;
     else
         std::cout << "int: " << f_i << std::endl;
-    if (flg == 0)
+    if ((flg == 0) && (f != std::numeric_limits<float>::infinity()) && (f != -std::numeric_limits<float>::infinity()))
     {
         std::cout << "float: " << f << ".0f" << std::endl;
         std::cout << "double: " << f_d << ".0" << std::endl;
@@ -159,7 +167,7 @@ void ScalarConverter::printDouble(std::string& str, int flg)
         std::cout << "int: impossible" << std::endl;
     else
         std::cout << "int: " << d_i << std::endl;
-    if (flg == 0)
+    if ((flg == 0) && (d != std::numeric_limits<double>::infinity()) && (d != -std::numeric_limits<double>::infinity()))
     {
         if (d < FLT_MIN || d > FLT_MAX)
             std::cout << "float: impossible" << std::endl;
