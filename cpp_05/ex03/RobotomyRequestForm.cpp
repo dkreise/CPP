@@ -17,7 +17,9 @@ std::string RobotomyRequestForm::getTarget(void) const
 void RobotomyRequestForm::executeForm(void) const
 {
     std::cout << "* drilling noises *" << std::endl;
-    if (std::rand() % 2 == 0)
+
+    int random = std::rand();
+    if (random % 2 == 0)
         std::cout << this->_target << " has been robotomized successfully!!" << std::endl;
     else
         std::cout << "Robotomy of " << this->_target << " failed.." << std::endl;

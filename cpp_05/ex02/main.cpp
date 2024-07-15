@@ -89,6 +89,9 @@ int main(void)
     b2.executeForm(f1);
     b3.executeForm(f2);
     test_execute(f3, b1);
+    RobotomyRequestForm rob("targetrob");
+    b1.signForm(rob);
+    b1.executeForm((rob));
 
     return (0);
 }
