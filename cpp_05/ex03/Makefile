@@ -3,11 +3,11 @@ NAME = bureaucrat
 #########
 RM = rm -f
 CC = c++
-CFLAGS = -Werror -Wextra -Wall -std=c++98 
+CFLAGS = -Werror -Wextra -Wall -std=c++98
 #########
 
 #########
-FILES = main Bureaucrat
+FILES = main Bureaucrat AForm PresidentialPardonForm RobotomyRequestForm ShrubberyCreationForm Intern
 
 SRC = $(addsuffix .cpp, $(FILES))
 #########
