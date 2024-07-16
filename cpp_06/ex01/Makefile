@@ -1,4 +1,4 @@
-NAME = convert
+NAME = serializer
 
 #########
 RM = rm -f

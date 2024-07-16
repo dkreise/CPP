@@ -15,5 +15,7 @@ int main(void)
     std::cout << "newdata->i = " << std::dec << newdata->i << std::endl;
     std::cout << "newdata->c = " << newdata->c << std::endl;
 
+    delete data;
+
     return (0);
 }
