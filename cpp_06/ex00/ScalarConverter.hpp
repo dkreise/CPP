@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <stdexcept>
 #include <climits>
+#include <limits>
 #include <cfloat>
 
 class ScalarConverter

@@ -1,5 +1,4 @@
 #include "ScalarConverter.hpp"
-#include <limits>
 
 ScalarConverter::ScalarConverter(void) {}
 
@@ -104,23 +103,18 @@ void ScalarConverter::convertDecimal(std::string& str)
 
 void ScalarConverter::printInt(std::string& str)
 {
-    // int i = std::atoi(str.c_str());
-    double i = std::atof(str.c_str());
-    // double aux = std::atof(str.c_str());
+    double i_d = std::atof(str.c_str());
+    int i = static_cast<int>(i_d);
     char i_c = static_cast<char>(i);
-    float i_f = static_cast<float>(i);
-    double i_d = static_cast<double>(i);
+    float i_f = static_cast<float>(i_d);
 
-    // if (i < aux)
-    // {
-    //     std::cout << "Out of range." << std::endl;
-    //     return;
-    // }
-    if (i < 32 || i > 126)
+    if (i_d < INT_MIN || i_d > INT_MAX)
+        throw std::logic_error("Error: Integer Overflow.");
+    if (i_d < 32 || i_d > 126)
         std::cout << "char: non displayable" << std::endl;
     else
         std::cout << "char: \'" << i_c << "\'" << std::endl;
-    std::cout << "int: " << (int)i << std::endl;
+    std::cout << "int: " << i << std::endl;
     std::cout << "float: " << i_f << ".0f" << std::endl;
     std::cout << "double: " << i_d << ".0" << std::endl;
 }
