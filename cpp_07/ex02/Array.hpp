@@ -23,7 +23,7 @@ class Array
             {
                 this->_elems = new T[src_n];
                 for (int i = 0; i < src_n; i ++)
-                    this->_elems[i] = src._elems[i]; // src[i] is working?
+                    this->_elems[i] = src._elems[i];
             }
             else
                 this->_elems = NULL;
@@ -52,9 +52,7 @@ class Array
         }
         T & operator[](unsigned int i) const
         {
-            if (this->_elems == NULL)
-                throw std::logic_error("Array does not exist.");
-            if (i >= this->_n)
+            if (i < 0 || i >= this->_n)
                 throw std::out_of_range("Index is out of range.");
             return (this->_elems[i]);
         }
