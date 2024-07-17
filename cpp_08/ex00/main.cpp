@@ -22,20 +22,6 @@ int main(void)
     {
         std::cerr << e.what() << std::endl;
     }
-
-    // std::vector<std::string> vs;
-    // vs.push_back("hello");
-    // vs.push_back("world");
-
-    // try
-    // {
-    //     std::vector<std::string>::iterator it = easyfind(vs, 3);
-    //     std::cout << std::distance(vs.begin(), it) << std::endl;
-    // }
-    // catch(const std::exception& e)
-    // {
-    //     std::cerr << e.what() << std::endl;
-    // }
     
     std::list<int> lst;
     lst.push_back(7);
