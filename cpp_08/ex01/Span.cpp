@@ -22,7 +22,7 @@ Span & Span::operator=(Span const & src)
 void Span::addNumber(int i)
 {
     if (this->_nums.size() >= this->_n)
-        throw std::logic_error("Impossible to add more numbers."); // search appropriate excp
+        throw std::logic_error("Impossible to add more numbers.");
     this->_nums.push_back(i);
 }
 
@@ -32,7 +32,7 @@ void Span::addRange(int start, int end)
     unsigned int size = this->_nums.size();
 
     if (start > end)
-        throw std::logic_error("Ivalid range.");
+        throw std::logic_error("Invalid range.");
     if (this->_n - size < range)
         throw std::logic_error("Range is too long.");
     
