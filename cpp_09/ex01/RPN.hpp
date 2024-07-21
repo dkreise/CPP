@@ -4,11 +4,16 @@
 #include <iostream>
 #include <stdexcept>
 #include <stack>
+#include <climits>
 
-#define NUMBER 1
-#define OPERATION 2
-#define SPACE 3
-#define OTHER 4
+enum CHAR_TYPE
+{
+    NUMBER = 1,
+    OPERATION,
+    SPACE,
+    OTHER
+};
+
 
 class RPN
 {
@@ -22,7 +27,7 @@ class RPN
         RPN & operator=(RPN const & src);
 
         static void doOperation(char op, std::stack<int> & st);
-        static int typeOfChar(char c);
+        static CHAR_TYPE typeOfChar(char c);
 };
 
 #endif

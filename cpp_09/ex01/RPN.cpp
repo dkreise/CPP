@@ -18,8 +18,9 @@ RPN & RPN::operator=(RPN const & src)
 int RPN::rpn(std::string input)
 {
     std::stack<int> st;
+    int len = input.length();
 
-    for (int i = 0; i < input.length(); i ++)
+    for (int i = 0; i < len; i ++)
     {
         switch (typeOfChar(input[i]))
         {
@@ -53,11 +54,11 @@ int RPN::rpn(std::string input)
 
 void RPN::doOperation(char op, std::stack<int> & st)
 {
-    int num1 = st.top();
+    long int num1 = st.top();
     st.pop();
-    int num2 = st.top();
+    long int num2 = st.top();
     st.pop();
-    int res = 0;
+    long int res = 0;
     
     switch (op)
     {
@@ -79,11 +80,13 @@ void RPN::doOperation(char op, std::stack<int> & st)
         res = num2 / num1;
         break;
     }
+    if (res > INT_MAX || res < INT_MIN)
+        throw std::logic_error("Error: integer overflow.");
 
     st.push(res);
 }
 
-int RPN::typeOfChar(char c)
+CHAR_TYPE RPN::typeOfChar(char c)
 {
     if (std::isdigit(c))
         return (NUMBER);
