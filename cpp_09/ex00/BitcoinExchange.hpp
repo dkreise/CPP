@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <map>
 #include <fstream>
+#include <cstdlib>
 
 class BitcoinExchange
 {
@@ -16,8 +17,8 @@ class BitcoinExchange
         ~BitcoinExchange(void);
         BitcoinExchange & operator=(BitcoinExchange const & src);
 
-        // std::map<std::string, int> data;
-        static void printOutput(std::string input);
+        static void fillMap(std::map<std::string, float>& data);
+        static void printOutput(std::string input, const std::map<std::string, float> data);
         static void validInputFormat(std::string line);
         static void validValue(float val);
         static void validDate(std::string date);
