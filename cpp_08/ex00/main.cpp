@@ -8,7 +8,12 @@ int main(void)
     v[0] = 1;
     v[4] = 42;
     v[5] = 17;
-
+    std::cout << std::endl << "ARRAY: ";
+    for (int i = 0; i < 7; i ++)
+    {
+	    std::cout << v[i] << " ";
+	}
+	
     std::cout << std::endl << "For array:" << std::endl;
     try
     {
@@ -29,8 +34,13 @@ int main(void)
     lst.push_back(42);
     lst.push_back(7);
     lst.push_back(3);
+    std::cout << "LIST: ";
+    for (std::list<int>::iterator i = lst.begin(); i != lst.end(); i ++)
+    {
+        std::cout << *i << " ";
+    }
 
-    std::cout << "For list:" << std::endl;
+    std::cout << std::endl << "For list:" << std::endl;
     try
     {
         std::list<int>::iterator it = easyfind(lst, 7);

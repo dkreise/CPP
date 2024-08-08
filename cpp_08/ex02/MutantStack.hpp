@@ -15,7 +15,7 @@ class MutantStack : public std::stack<T>
 
         MutantStack & operator=(MutantStack const & src)
         {
-            return (std::stack<T>::operatot=(src));
+            return (std::stack<T>::operator=(src));
         }
 
         typedef typename std::stack<T>::container_type::iterator iterator;
