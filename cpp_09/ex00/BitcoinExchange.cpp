@@ -25,6 +25,9 @@ void BitcoinExchange::btc(std::string input_file)
         throw std::runtime_error("Error: unable to open the file.");
     
     std::string line;
+    std::getline(file, line);
+    if (line != "date | value")
+        printOutput(line, data);
     while (std::getline(file, line))
     {
         printOutput(line, data);
