@@ -62,7 +62,7 @@ void BitcoinExchange::printOutput(std::string input, const std::map<std::string,
         std::string value = input.substr(13, input.length() - 13);
         float val = std::atof(value.c_str());
         validDate(date);
-        validValue(val);
+        validValue(val, value);
         std::map<std::string, float>::const_iterator it = data.lower_bound(date);
         if (it != data.begin() && ((it != data.end() && it->first != date) || it == data.end()))
             it --;
@@ -76,7 +76,7 @@ void BitcoinExchange::printOutput(std::string input, const std::map<std::string,
     
 }
 
-void BitcoinExchange::validInputFormat(std::string line)
+void BitcoinExchange::validInputFormat(std::string& line)
 {
     if (line.length() < 14)
         throw std::logic_error("Error: bad input => " + line);
@@ -86,15 +86,17 @@ void BitcoinExchange::validInputFormat(std::string line)
         throw std::logic_error("Error: bad input => " + line);
 }
 
-void BitcoinExchange::validValue(float val)
+void BitcoinExchange::validValue(float& val, std::string& value)
 {
+    if (!isNumber(value))
+        throw std::logic_error("Error: not a number.");
     if (val < 0)
         throw std::logic_error("Error: not a positive number.");
     if (val > 1000)
         throw std::logic_error("Error: number is too large.");
 }
 
-void BitcoinExchange::validDate(std::string date)
+void BitcoinExchange::validDate(std::string& date)
 {
     std::string year;
     std::string month;
@@ -111,7 +113,7 @@ void BitcoinExchange::validDate(std::string date)
         throw std::logic_error("Error: not a valid date.");
 }
 
-bool BitcoinExchange::isNumber(std::string part)
+bool BitcoinExchange::isNumber(std::string& part)
 {
     int len = part.length();
     for (int i = 0; i < len; i ++)

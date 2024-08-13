@@ -19,10 +19,10 @@ class BitcoinExchange
 
         static void fillMap(std::map<std::string, float>& data);
         static void printOutput(std::string input, const std::map<std::string, float> data);
-        static void validInputFormat(std::string line);
-        static void validValue(float val);
-        static void validDate(std::string date);
-        static bool isNumber(std::string part);
+        static void validInputFormat(std::string& line);
+        static void validValue(float& val, std::string& value);
+        static void validDate(std::string& date);
+        static bool isNumber(std::string& part);
 
 };
 
