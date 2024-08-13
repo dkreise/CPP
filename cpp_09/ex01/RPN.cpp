@@ -31,7 +31,6 @@ int RPN::rpn(std::string input)
         case OPERATION:
             if (st.size() < 2)
             {
-                std::cout << i << ": " << input[i] << " top: " << st.top() << std::endl;
                 throw std::logic_error("Error: invalid input: less than 2 numbers before operation.");
             }
             doOperation(input[i], st);
