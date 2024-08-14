@@ -8,11 +8,12 @@
 #include <deque>
 #include <ctime>
 #include <cstdlib>
+#include <climits>
 
 class PmergeMe
 {
     public:
-        static std::vector<int> pmerge(char** nums);
+        static void pmerge(char** nums);
 
     private:
         PmergeMe(void);
@@ -20,11 +21,12 @@ class PmergeMe
         ~PmergeMe(void);
         PmergeMe & operator=(PmergeMe const & src);
 
-        // help functions:
         static std::vector<int> mergeInsertSortVector(std::vector<int> arr);
         static std::deque<int> mergeInsertSortDeque(std::deque<int> arr);
         static std::vector<int> parseV(char** nums);
-        static std::deque<int> parseD(char** nums); // change, just copy from vector
+        static void checkOnlyDigits(char* num);
+        static void checkPosInt(char* num);
+        static std::deque<int> parseD(std::vector<int>& nums);
 
         static std::vector<std::pair<int, int> > getSortedPairsV(std::vector<int>& arr);
         static std::deque<std::pair<int, int> > getSortedPairsD(std::deque<int>& arr);
@@ -36,7 +38,6 @@ class PmergeMe
         static void printVector(std::vector<int> v);
         static void printDeque(std::deque<int> d);
         static void printPairsV(std::vector<std::pair<int, int> > p);
-        //static void printPairsD(std::deque<std::pair<int, int> > p);
 
         static std::vector<int> getSortedVector(std::vector<std::pair<int, int> > pairs);
         static std::deque<int> getSortedDeque(std::deque<std::pair<int, int> > pairs);
@@ -44,6 +45,8 @@ class PmergeMe
         static int nextLength(int len, int& pow);
         static void insertBSVector(std::vector<int>& sorted, int len, int val);
         static void insertBSDeque(std::deque<int>& sorted, int len, int val);
+
+        static void checkSorted(std::vector<int>& arr);
 };
 
 #endif

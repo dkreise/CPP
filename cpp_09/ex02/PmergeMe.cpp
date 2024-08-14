@@ -15,47 +15,40 @@ PmergeMe & PmergeMe::operator=(PmergeMe const & src)
     return (*this);
 }
 
-std::vector<int> PmergeMe::pmerge(char** nums)
+void PmergeMe::pmerge(char** nums)
 {
-    // everything in try catch
-
-    std::vector<int> arrV;
-    std::vector<int> sortedV;
-    std::deque<int> arrD;
-    std::deque<int> sortedD;
-    
-    arrV = parseV(nums);
-    arrD = parseD(nums);
-    std::cout << "Before: ";
-    printVector(arrV);
-    
-    clock_t startv = clock();
-    sortedV = mergeInsertSortVector(arrV);
-    clock_t endv = clock();
-
-    clock_t startd = clock();
-    sortedD = mergeInsertSortDeque(arrD);
-    clock_t endd = clock();
-
-    std::cout << "After: ";
-    printVector(sortedV);
-
-    double elapsed = static_cast<double>(endv - startv) / CLOCKS_PER_SEC * 1000000.0;
-    std::cout << "Time to process a range of " << arrV.size() << " elements with std::vector : " << elapsed << " us" << std::endl;
-    elapsed = static_cast<double>(endd - startd) / CLOCKS_PER_SEC * 1000000.0;
-    std::cout << "Time to process a range of " << arrD.size() << " elements with std::deque : " << elapsed << " us" << std::endl;
-
-    // check if not sorted properly:
-    for (size_t i = 1; i < sortedV.size(); i ++)
+    try
     {
-        if (sortedV[i - 1] > sortedV[i])
-        {
-            std::cout << "NOT SORTED" << std::endl;
-            return (sortedV);
-        }
+        std::vector<int> arrV;
+        std::vector<int> sortedV;
+        std::deque<int> arrD;
+        std::deque<int> sortedD;
+        
+        arrV = parseV(nums);
+        arrD = parseD(arrV);
+        std::cout << "Before: ";
+        printVector(arrV);
+        
+        clock_t startv = clock();
+        sortedV = mergeInsertSortVector(arrV);
+        clock_t endv = clock();
+
+        clock_t startd = clock();
+        sortedD = mergeInsertSortDeque(arrD);
+        clock_t endd = clock();
+
+        std::cout << "After: ";
+        printVector(sortedV);
+
+        double elapsed = static_cast<double>(endv - startv) / CLOCKS_PER_SEC * 1000000.0;
+        std::cout << "Time to process a range of " << arrV.size() << " elements with std::vector : " << elapsed << " us" << std::endl;
+        elapsed = static_cast<double>(endd - startd) / CLOCKS_PER_SEC * 1000000.0;
+        std::cout << "Time to process a range of " << arrD.size() << " elements with std::deque : " << elapsed << " us" << std::endl;
     }
-    std::cout << "SORTED GOOD" << std::endl;
-    return (sortedV);
+    catch (const std::exception& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
 }
 
 std::vector<int> PmergeMe::mergeInsertSortVector(std::vector<int> arr)
@@ -71,11 +64,8 @@ std::vector<int> PmergeMe::mergeInsertSortVector(std::vector<int> arr)
     else 
         is_odd = false;
     pairs = getSortedPairsV(arr);
-    // std::cout << "Sorted Pairs: ";
-    // printPairsV(pairs);
     
     sorted = getSortedVector(pairs);
-    //std::cout << "IS SORTED" << std::endl;
     if (is_odd)
         insertBSVector(sorted, sorted.size(), arr[n - 1]);
 
@@ -106,23 +96,56 @@ std::deque<int> PmergeMe::mergeInsertSortDeque(std::deque<int> arr)
 std::vector<int> PmergeMe::parseV(char** nums)
 {
     std::vector<int> arr;
-    // parse properly later (check each string if is digigt, if is int etc)
     for (int i = 1; nums[i] != NULL; i ++)
     {
+        checkOnlyDigits(nums[i]);
+        checkPosInt(nums[i]);
         arr.push_back(std::atoi(nums[i]));
     }
     return (arr);
 }
 
-std::deque<int> PmergeMe::parseD(char** nums)
+std::deque<int> PmergeMe::parseD(std::vector<int>& nums)
 {
     std::deque<int> arr;
-    // parse properly later (check each string if is digigt, if is int etc)
-    for (int i = 1; nums[i] != NULL; i ++)
+
+    for (size_t i = 0; i < nums.size(); i ++)
     {
-        arr.push_back(std::atoi(nums[i]));
+        arr.push_back(nums[i]);
     }
     return (arr);
+}
+
+void PmergeMe::checkOnlyDigits(char* num)
+{
+    int i = 0;
+
+    if (num[0] == '\0')
+    {
+        throw std::logic_error("Error: empty string.");
+    }
+    if (num[0] == '-' || num[0] == '+')
+    {
+        i ++;
+    }
+    while (num[i] != '\0')
+    {
+        if (!std::isdigit(num[i]))
+        {
+            throw std::logic_error("Error: not a number.");
+        }
+        i ++;
+    }
+}
+
+void PmergeMe::checkPosInt(char* num)
+{
+    float n = std::atof(num);
+
+    if (n < 0)
+        throw std::logic_error("Error: not a positive number.");
+    if (n > (float)INT_MAX)
+        throw std::logic_error("Error: number is too large.");
 }
 
 std::vector<std::pair<int, int> > PmergeMe::getSortedPairsV(std::vector<int>& arr)
@@ -139,8 +162,6 @@ std::vector<std::pair<int, int> > PmergeMe::getSortedPairsV(std::vector<int>& ar
         else
             pairs.push_back(std::make_pair(arr[i + 1], arr[i]));
     }
-    // std::cout << "Not Sorted Pairs: ";
-    // printPairsV(pairs);
     return (sortPairsV(pairs));
 }
 
@@ -246,8 +267,6 @@ std::vector<int> PmergeMe::getSortedVector(std::vector<std::pair<int, int> > pai
 
     for (int i = 0; i < n; i ++)
         sorted.push_back(pairs[i].first);
-    // std::cout << "Array now: ";
-    // printVector(sorted);
 
     int j_prevprev = 0;
     int j_prev = 1;
@@ -258,22 +277,7 @@ std::vector<int> PmergeMe::getSortedVector(std::vector<std::pair<int, int> > pai
 
     while (i <= n)
     {
-        // j_cur = nextJacobsthal(j_prev, j_prevprev);
-        // std::cout << "JACOBSTHAL:::: " << j_cur << std::endl;
-        // std::cout << "iiiii:::: " << i << std::endl;
-        // len = nextLength(len, p);
-        // if (j_cur <= n)
-        //     insertBSVector(sorted, len, pairs[j_cur - 1].second);
-        // while (i < j_cur)
-        // {
-        //     std::cout << "iiiii:::: " << i << std::endl;
-        //     if (i <= n)
-        //         insertBSVector(sorted, len, pairs[i - 1].second);
-        //     i ++;
-        // }
-        // i ++;
         j_cur = nextJacobsthal(j_prev, j_prevprev);
-        //std::cout << "JACOBSTHAL:::: " << j_cur << std::endl;
         len = nextLength(len, p);
         if (j_cur <= n)
            insertBSVector(sorted, len, pairs[j_cur - 1].second);
@@ -299,8 +303,6 @@ std::deque<int> PmergeMe::getSortedDeque(std::deque<std::pair<int, int> > pairs)
 
     for (int i = 0; i < n; i ++)
         sorted.push_back(pairs[i].first);
-    // std::cout << "Deque now: ";
-    // printDeque(sorted);
 
     int j_prevprev = 0;
     int j_prev = 1;
@@ -311,17 +313,6 @@ std::deque<int> PmergeMe::getSortedDeque(std::deque<std::pair<int, int> > pairs)
 
     while (i <= n)
     {
-        // j_cur = nextJacobsthal(j_prev, j_prevprev);
-        // len = nextLength(len, p);
-        // if (j_cur <= n)
-        //     insertBSDeque(sorted, len, pairs[j_cur - 1].second);
-        // while (i < j_cur)
-        // {
-        //     if (i <= n)
-        //         insertBSDeque(sorted, len, pairs[i - 1].second);
-        //     i ++;
-        // }
-        // i ++;
         j_cur = nextJacobsthal(j_prev, j_prevprev);
         len = nextLength(len, p);
         if (j_cur <= n)
@@ -364,9 +355,7 @@ void PmergeMe::insertBSVector(std::vector<int>& sorted, int len, int val)
         sorted.push_back(val);
         return;
     }
-    // std::cout << "SORTED LEN::: " << n << std::endl;
-    // std::cout << "ARRAY NOW: ";
-    //printVector(sorted);
+
     if (len > n)
         len = n;
     int l = 0;
@@ -377,8 +366,6 @@ void PmergeMe::insertBSVector(std::vector<int>& sorted, int len, int val)
     {
         mid = (l + h) / 2;
         cur = sorted[mid];
-        // std::cout << "LOOP l: " << l << " len: " << len << std::endl;
-        // std::cout << "LOOP mid: " << mid << " cur: " << cur << " h: " << h << " val: " << val << std::endl;
         if (l == h)
         {
             if (cur < val)
@@ -390,8 +377,6 @@ void PmergeMe::insertBSVector(std::vector<int>& sorted, int len, int val)
         else    
             h = mid - 1;
     }
-    // std::cout << "l: " << l << " len: " << len << std::endl;
-    // std::cout << "mid: " << mid << " cur: " << cur << " h: " << h << " val: " << val << std::endl;
     sorted.insert(sorted.begin() + l, val);
 }
 
@@ -468,4 +453,17 @@ void PmergeMe::printPairsV(std::vector<std::pair<int, int> > p)
             std::cout << ", ";
     }
     std::cout << " ]" << std::endl;
+}
+
+void PmergeMe::checkSorted(std::vector<int>& arr)
+{
+    for (size_t i = 1; i < arr.size(); i ++)
+    {
+        if (arr[i - 1] > arr[i])
+        {
+            std::cout << "NOT SORTED" << std::endl;
+            return;
+        }
+    }
+    std::cout << "SORTED GOOD" << std::endl;
 }
