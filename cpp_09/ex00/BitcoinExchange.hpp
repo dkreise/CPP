@@ -11,6 +11,7 @@ class BitcoinExchange
 {
     public:
         static void btc(std::string input_file);
+        
     private:
         BitcoinExchange(void);
         BitcoinExchange(BitcoinExchange const & src);
@@ -23,6 +24,7 @@ class BitcoinExchange
         static void validValue(float& val, std::string& value);
         static void validDate(std::string& date);
         static bool isNumber(std::string& part);
+        static bool isFloat(std::string& num);
 
 };
 

@@ -89,7 +89,10 @@ void BitcoinExchange::validInputFormat(std::string& line)
 void BitcoinExchange::validValue(float& val, std::string& value)
 {
     if (!isNumber(value))
-        throw std::logic_error("Error: not a number.");
+    {
+        if (!isFloat(value))
+            throw std::logic_error("Error: not a number.");
+    }
     if (val < 0)
         throw std::logic_error("Error: not a positive number.");
     if (val > 1000)
@@ -124,3 +127,24 @@ bool BitcoinExchange::isNumber(std::string& part)
     return true;
 }
 
+bool BitcoinExchange::isFloat(std::string& num)
+{
+    int len = num.length();
+    bool one_dot = false;
+
+    for (int i = 0; i < len; i ++)
+    {
+        if (i == 0 && (num[i] == '+' || num[i] == '-'))
+            continue;
+        if (num[i] == '.')
+        {
+            if (one_dot)
+                return false;
+            else
+                one_dot = true;
+        }
+        else if (!std::isdigit(num[i]))
+            return false;
+    }
+    return true;
+}
